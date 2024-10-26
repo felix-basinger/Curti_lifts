@@ -1,0 +1,135 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Chi siamo
+{% endblock %}
+
+
+{% block content %}
+
+<style>
+    p {
+        hyphens: auto;
+        -webkit-hyphens: auto; /* Для поддержки в старых версиях Safari */
+        -moz-hyphens: auto;    /* Для старых версий Firefox */
+        overflow-wrap: break-word;
+    }
+    .contact-section {
+        padding: 40px 0;
+        background-color: #f8f9fa;
+    }
+
+    .contact-section h3 {
+        font-size: 2rem;
+        color: #0a97d9;
+        margin-bottom: 20px;
+    }
+
+    .contact-section h3::after {
+            content: '';
+            display: block;
+            text-align: left;
+            width: 60px;
+            height: 3px;
+            background-color: #0a97d9;
+            margin: 20px 0 20px 0; /* Отступы для полоски */
+        }
+
+    .contact-info p {
+        font-size: 1.2rem;
+        color: #333;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .contact-info i {
+        font-size: 1.5rem;
+    }
+
+    iframe {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+    }
+
+    .contact-section h2 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: black;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .contact-section h2::after {
+            content: '';
+            display: block;
+            text-align: left;
+            width: 60px;
+            height: 3px;
+            background-color: #0a97d9;
+            margin: 20px auto 20px; /* Отступы для полоски */
+        }
+
+    @media (max-width: 768px) {
+
+    .col-md-12 {
+        padding: 10px;
+    }
+        iframe {
+            width: 100%;
+            height: 400px;
+
+        }
+    }
+</style>
+
+<section class="contact-section">
+    <div class="container">
+        <h2>Contatti</h2>
+        <div class="row">
+            <!-- Контактные данные -->
+            <div class="col-md-6 contact-info" style="padding-top: 40px;">
+<!--                <h3>Contatti</h3>-->
+                <p><i class="bi bi-geo-alt-fill" style="color: #0a97d9;"></i> Indirizzo: Via Pascolo, 6 - 23842 Bosisio Parini (LC)</p>
+                <p><i class="bi bi-telephone-fill" style="color: #0a97d9;"></i> Telefono: (+39) 031 876 187</p>
+                <p><i class="bi bi-printer-fill" style="color: #0a97d9;"></i> Fax: (+39) 987 654 321</p>
+                <p><i class="bi bi-envelope-fill" style="color: #0a97d9;"></i> Email: info@nuovacurti.com</p>
+            </div>
+
+            <div class="col-md-6" style="padding-top: 40px;">
+                <form method="post" action="{% url 'contact' %}">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="name" class="form-label" style="color: #000000;">Il tuo nome</label>
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Inserisci il tuo nome" required style="border: 2px solid #0a97d9; border-radius: 0px;">
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label" style="color: #000000;">La tua email</label>
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Inserisci la tua email" required style="border: 2px solid #0a97d9; border-radius: 0px;">
+                    </div>
+                    <div class="mb-3">
+                        <label for="message" class="form-label" style="color: #000000;">Il tuo messaggio</label>
+                        <textarea class="form-control" id="message" name="message" rows="5" placeholder="Scrivi il tuo messaggio qui" required style="border: 2px solid #0a97d9; border-radius: 0px;"></textarea>
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <button type="submit" class="btn btn-primary" style="background-color: #0a97d9; border-color: #0a97d9; border-radius: 0px; width: 150px;">Invia</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
+            <!-- Карта -->
+            <div class="col-md-12" style="padding: 5px; padding-top: 50px;">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1390.8143227426772!2d9.307331!3d45.798667!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4786a724fd72685b%3A0xdf52870350fc0dce!2sNuova%20Curti%20Srl!5e0!3m2!1sen!2sit!4v1729855713625!5m2!1sen!2sit"
+                    width="100%"  height="600" style="border:0; max-width: 1300px;" allowfullscreen="" loading="lazy">
+                </iframe>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+{% endblock %}

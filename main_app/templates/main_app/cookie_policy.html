@@ -1,0 +1,174 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Chi siamo
+{% endblock %}
+
+
+{% block content %}
+<style>
+    p {
+        hyphens: auto;
+        -webkit-hyphens: auto; /* Для поддержки в старых версиях Safari */
+        -moz-hyphens: auto;    /* Для старых версий Firefox */
+        overflow-wrap: break-word;
+    }
+    .custom-table-section {
+        padding: 30px 0;
+    }
+
+    .table-responsive {
+        margin-top: 20px;
+    }
+
+    .table th, .table td {
+        text-align: center;
+        vertical-align: middle;
+    }
+
+    .table th {
+        background-color: #0a97d9;
+        color: #ffffff;
+    }
+
+
+    .table-striped > tbody > tr:nth-of-type(odd) {
+        background-color: rgba(10, 151, 217, 0.1); /* Светлый голубой для чередующихся строк */
+    }
+
+     .custom-table-section h2 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .custom-table-section p {
+        font-size: 1.2rem;
+        margin-bottom: 30px;
+        color: #555;
+        text-align: justify;
+    }
+
+    .custom-table-section h2::after {
+        content: '';
+        display: block;
+        text-align: left;
+        width: 60px;
+        height: 3px;
+        background-color: #0a97d9;
+        margin: 20px auto 20px;
+    }
+
+    .custom-table-section h3::after {
+        content: '';
+        display: block;
+        text-align: left;
+        width: 60px;
+        height: 3px;
+        background-color: #0a97d9;
+        margin: 20px 0 20px 0;
+    }
+</style>
+
+<section class="custom-table-section">
+    <div class="container">
+        <h2>Cookie Policy</h2>
+        <h3>Che cos’è un cookie e a cosa serve?</h3>
+        <p>
+            Un cookie è un file di piccole dimensioni che viene inviato al browser e salvato sul dispositivo
+            dell’utente, quando accede e utilizza il sito web www.nuovacurti.com (di seguito, anche solo “Sito”). I
+            cookie permettono un funzionamento efficiente del Sito e ne migliorano le prestazioni, anche mediante la
+            raccolta e l’analisi di informazioni aggregate, che consentono al gestore del Sito di comprendere come
+            migliorare la struttura del Sito e delle sue sezioni. Mediante i cookie, inoltre, è possibile raccogliere
+            informazioni per fini statistici, principalmente per personalizzare l’esperienza di navigazione dell’utente,
+            ricordando le sue preferenze (per esempio, la lingua, la valuta etc.)
+        </p>
+        <h3>Quali cookie utilizziamo?</h3>
+        <p>
+            I cookie tecnici possono essere suddivisi in cookie di navigazione o di sessione, che garantiscono la
+            normale navigazione e fruizione del Sito (permettendo, ad esempio, di coordinare i moduli che compongono le
+            pagine del Sito o correlare le pagine visitate alla medesima sessione di lavoro) e cookie analytics,
+            assimilabili ai cookie tecnici soltanto se utilizzati a fini di ottimizzazione del Sito direttamente dal
+            gestore del Sito stesso (c.d. cookie analitici di prima parte) che potrà raccogliere informazioni in forma
+            aggregata sul numero degli utenti e su come questi visitano il Sito (ad esempio, per realizzare statistiche
+            delle pagine più visitate, per raccogliere i dati aggregati delle visite per sistema operativo, per browser,
+            etc.).
+        </p>
+        <p>
+            L’uso dei cookie di sessione è strettamente limitato alla trasmissione di identificativi di sessione
+            (costituiti da numeri casuali generati dal server) e di dati di utilizzo del software necessari per
+            consentire l’esplorazione sicura ed efficiente del sito: le variabili (c.d. cookie) di sessione possono
+            evitare il ricorso a tecniche informatiche potenzialmente pregiudizievoli per la riservatezza della
+            navigazione degli utenti e non consentono l’acquisizione di dati personali identificativi dell’utente.
+        </p>
+        <p>
+            I cookie di sessione non vengono memorizzati in modo persistente sul dispositivo dell’utente, ma vengono
+            registrati localmente per periodi di tempo stabiliti in funzione delle variabili di sessione (i cui valori
+            memorizzati sul disco fisso del dispositivo possono comunque essere cancellati; è inoltre possibile
+            disabilitare i cookie seguendo le indicazioni fornite dai principali browser).
+        </p>
+        <p>
+            I cookie tecnici (di sessione e analitici di prima parte) in uso sul Sito sono:
+
+            <br>• cookie del tipo “_ga”“_gat” “_gid” “_gtag” “_UA” “111400542_1”
+        </p>
+        <h3>Cookie di terza parte?</h3>
+        <p>
+            I cookie di terza parte vengono impostati da un sito web diverso da quello che l’utente sta visitando e
+            risiedono su server diversi da quello del sito visitato.
+        </p>
+        <p>
+            Pertanto, l’utilizzo dei dati raccolti da questi operatori esterni tramite cookie è sottoposto alle
+            rispettive politiche sulla privacy.
+            Sul Sito sono presenti cookie installati da Facebook (es: fr).
+        </p>
+        <p>
+            Per avere maggiori informazioni sulle modalità di utilizzo, sui tipi di cookie utilizzati da Facebook,
+            nonché sulla gestione dei cookie nel browser dell’utente, è possibile consultare la policy sui cookie di
+            Facebook al seguente link https://www.facebook.com/policy.php
+        </p>
+        <p>
+            Widget Google Maps (Google Inc.): Google Maps è un servizio di visualizzazione di mappe gestito da Google
+            Inc. che permette a questo Sito Web
+            di integrare tali contenuti all’interno delle proprie pagine: raccoglie Cookie e Dati di utilizzo secondo
+            quanto
+            specificato dalla privacy policy del servizio negli Stati Uniti (Google Privacy Policy)
+        </p>
+        <p>
+            Questo sito non fa in alcun modo uso di cookie c.d. “di profilazione” (volti a creare profili relativi
+            all’utente e utilizzati al fine di inviare messaggi pubblicitari in linea con le preferenze manifestate
+            dallo stesso nell’ambito della navigazione in rete).
+        </p>
+        <h3>Come posso disabilitare i cookie?</h3>
+        <p>
+            La maggior parte dei browser è configurata per accettare, controllare o eventualmente disabilitare i cookie
+            attraverso le impostazioni. Si ricorda, però, che la disabilitazione, anche parziale, dei cookie tecnici
+            potrebbe compromettere il funzionamento del Sito e/o limitarne le funzionalità.
+            <br>La disabilitazione dei cookie di terza parte, invece, non pregiudica in alcun modo la navigabilità.
+        </p>
+        <p>
+            Si indicano, di seguito, i link alle istruzioni fornite dai principali browser di navigazione per la
+            gestione delle impostazioni sull’installazione dei cookie:
+            <br>Chrome: https://support.google.com/chrome/answer/95647?hl=it
+            <br>Firefox: https://support.mozilla.org/it/kb/Gestione%20dei%20cookie
+            <br>Internet Explorer:
+            https://support.microsoft.com/en-us/help/17442/windows-internet-explorer-delete-manage-cookies
+            <br>Opera: http://help.opera.com/Windows/10.00/it/cookies.html
+            <br>Safari: http://support.apple.com/kb/HT1677?viewlocale=it_IT
+        </p>
+        <p>
+            Per maggiori informazioni sui cookie e per gestire le tue preferenze ti invitiamo anche a visitare
+            http://www.youronlinechoices.com/it/.
+        </p>
+        <p>
+            Per ricevere assistenza o spiegazioni su come esercitare il consenso/diniego selettivo o su come cancellare
+            i cookie dal proprio browser, l’utente scrivendo all’indirizzo e-mail info@nuovacurti.com può esercitare i
+            suoi diritti ex artt. 15 – 22 GDPR o effettuare reclami/segnalazioni circa il funzionamento dei cookies.
+        </p>
+    </div>
+</section>
+
+
+{% endblock %}

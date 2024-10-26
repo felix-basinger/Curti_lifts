@@ -1,0 +1,945 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Главная{% endblock %}</title>
+    <!-- Подключение Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- Подключение кастомных стилей -->
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.3/font/bootstrap-icons.min.css"
+          rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet">
+</head>
+<style>
+
+    .navbar-toggler {
+        background-color: transparent; /* Убираем фон */
+        border: none;
+        padding: 10px;
+        cursor: pointer;
+        outline: none;
+    }
+
+    /* Линии бургера */
+    .navbar-toggler-icon {
+        width: 30px;
+        height: 3px;
+        background-color: #0a97d9; /* Цвет линий */
+        display: block;
+        position: relative;
+        background-image: none;
+    }
+
+    /* Дополнительные линии */
+    .navbar-toggler-icon::before,
+    .navbar-toggler-icon::after {
+        content: '';
+        width: 30px;
+        height: 3px;
+        background-color: #0a97d9; /* Цвет линий */
+        position: absolute;
+        left: 0;
+    }
+
+    /* Верхняя и нижняя линии */
+    .navbar-toggler-icon::before {
+        top: -8px;
+    }
+
+    .navbar-toggler-icon::after {
+        top: 8px;
+    }
+
+    /* Изменение цвета при наведении */
+    .navbar-toggler:hover .navbar-toggler-icon,
+    .navbar-toggler:hover .navbar-toggler-icon::before,
+    .navbar-toggler:hover .navbar-toggler-icon::after {
+
+    }
+
+   @media (max-width: 991px) {
+   .navbar-nav{
+     padding-left: 0;
+     padding-right: 0;
+   }
+
+    .nav-item {
+    margin-right: 0 !important; /* Увеличиваем отступ между пунктами меню */
+}
+
+    .navbar-nav .nav-link {
+        display: block;
+        width: 100%; /* Делает ссылку кликабельной на всю ширину */
+        padding: 10px; /* Увеличиваем кликабельную область */
+        font-size: 16px; /* Увеличиваем шрифт */
+        margin-bottom: 2px; /* Отделяем ссылки друг от друга */
+        background-color: rgba(10, 151, 217, 0.1); /* Задаем фон для ссылок */
+        text-align: center; /* Центрируем текст */
+    }
+
+    .navbar-collapse {
+        background-color: rgba(10,151,217, 0.1); /* Цвет фона мобильного меню */
+
+    }
+
+
+}
+
+    #scrollTopBtn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: none;
+            background-color: #0a97d9;
+            color: white;
+            font-size: 24px;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        #scrollTopBtn:hover {
+            background-color: #007bff;
+        }
+    /* Стили для элементов меню */
+
+.nav-item {
+    margin-right: 20px; /* Увеличиваем отступ между пунктами меню */
+}
+
+.nav-link {
+    position: relative;
+    display: inline-block;
+    color: #000;
+    text-decoration: none;
+    font-weight: 400;
+    font-size: 16px;
+    padding-bottom: 5px;
+    transition: color 0.3s ease;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 2px;
+    background-color: #0a97d9; /* Синий цвет полосы */
+    transition: width 0.5s ease;
+}
+
+.nav-link:hover {
+    color: #0a97d9; /* Цвет текста при наведении */
+}
+
+.nav-link:hover::after {
+    width: 100%; /* Полоса подчеркивает весь текст при наведении */
+}
+
+
+   .custom-dropdown {
+        position: relative;
+    }
+
+    .custom-dropdown-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background-color: white;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+        min-width: 270px;
+        transition: max-height 0.5s ease-out;
+    }
+
+    .custom-dropdown-menu.active {
+        display: block;
+    }
+
+    .custom-dropdown-item {
+        padding: 10px 20px;
+        color: #333;
+        text-decoration: none;
+        display: block;
+        transition: background-color 0.3s ease;
+        border-bottom: 2px solid #0a97d9;
+    }
+
+    .custom-dropdown-item:hover {
+        background-color: #f0f8ff;
+        color: #000;
+    }
+
+    .custom-dropdown:hover .custom-dropdown-menu {
+    display: block;
+}
+
+.nav-link:hover::after,
+.custom-dropdown:hover .nav-link::after {
+    width: 100%;
+    color: #0a97d9;
+}
+
+.custom-dropdown:hover .nav-link {
+    color: #0a97d9;
+}
+
+    /* Добавляем подчеркивание при наведении */
+    .nav-link::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 0;
+        height: 2px;
+        background-color: #0a97d9;
+        transition: width 0.5s ease;
+    }
+
+
+    @media (max-width: 768px) {
+        .contatti {
+            text-align: center;
+        }
+
+        .row.justify-content-between {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .col-md-6 {
+        max-width: 100%;
+        flex: 0 0 100%;
+    }
+
+    .col-md-6.text-md-end {
+        text-align: center !important;
+    }
+
+    .col-md-6.text-md-start {
+        text-align: center !important;
+        padding-bottom: 30px;
+    }
+    }
+
+
+
+
+
+   /* Основные стили модального окна */
+.cookie-consent-modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Темный фон с прозрачностью */
+    opacity: 0;
+    transition: opacity 0.4s ease; /* Плавное появление */
+}
+
+.cookie-consent-content {
+    background-color: #fff;
+    margin: 15% auto;
+    padding: 30px;
+    width: 80%;
+    max-width: 500px;
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.15); /* Мягкие тени */
+    text-align: center;
+    transform: scale(0.8);
+    transition: transform 0.4s ease; /* Плавное увеличение при показе */
+}
+
+.cookie-consent-modal.show {
+    opacity: 1;
+    transition: opacity 0.4s ease;
+}
+
+.cookie-consent-content.show {
+    transform: scale(1); /* Увеличение до нормального размера */
+}
+
+/* Кнопка закрытия */
+.cookie-consent-close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    color: #aaa;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.cookie-consent-close:hover {
+    color: #000;
+}
+
+/* Кнопки */
+.cookie-consent-buttons button {
+    margin: 10px;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border-radius: 0;
+}
+
+.btn-primary {
+    background-color: #0a97d9;
+    color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary:hover {
+    background-color: #007bff;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
+}
+
+.btn-light {
+    background-color: #f8f9fa;
+    color: black;
+    border: 1px solid #ced4da;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.btn-light:hover {
+    background-color: #e2e6ea;
+}
+
+/* Ссылки на политику */
+.cookie-links {
+    margin-top: 20px;
+}
+
+.cookie-links a {
+    color: #0a97d9;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.cookie-links a:hover {
+    color: #007bff;
+}
+
+
+    @media (max-width: 480px) {
+    .cookie-consent-content {
+        width: 95%;
+        padding: 15px;
+        font-size: 16px;
+    }
+
+    .cookie-consent-close {
+    position: absolute;
+    top: 2px;
+    right: 15px;
+    color: #aaa;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+    h2 {
+        font-size: 18px;
+    }
+
+    p {
+        font-size: 14px;
+        margin: 10px 0;
+    }
+
+    .cookie-consent-buttons button {
+        padding: 8px 12px;
+        font-size: 12px;
+        border-radius: 0;
+    }
+
+    .cookie-links {
+        font-size: 11px;
+    }
+}
+
+
+
+
+
+
+    /* Основные стили для модального окна настроек */
+.cookie-preferences-modal {
+    display: none;
+    position: fixed;
+    z-index: 1001;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.cookie-preferences-modal.show {
+    display: block;
+    opacity: 1;
+    transition: opacity 0.4s ease;
+}
+
+.cookie-preferences-content {
+    background-color: #fff;
+    margin: 10% auto;
+    padding: 30px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.15);
+    text-align: center;
+    position: relative;
+}
+
+/* Крестик закрытия окна настроек */
+.cookie-preferences-close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    color: #aaa;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.cookie-preferences-close:hover {
+    color: #000;
+}
+
+/* Стили для категорий cookie */
+.cookie-category {
+    background-color: #f8f9fa;
+    margin-bottom: 10px;
+    text-align: left;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cookie-category-options {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Стили для переключателей */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 34px;
+    height: 20px;
+    margin-right: 10px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 12px;
+    width: 12px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: #0a97d9;
+}
+
+input:checked + .slider:before {
+    transform: translateX(14px);
+}
+
+/* Стили для кнопок сохранения и отмены */
+.cookie-preferences-buttons {
+    margin-top: 20px;
+}
+
+.cookie-preferences-buttons button {
+    margin: 10px;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border-radius: 0;
+}
+
+.btn-primary {
+    background-color: #0a97d9;
+    color: white;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    color: white;
+}
+
+/* Ссылки на политику */
+.cookie-links {
+    margin-top: 20px;
+    font-size: 12px;
+}
+
+.cookie-links a {
+    color: #0a97d9;
+    text-decoration: none;
+}
+
+
+
+
+.cookie-preferences-modal {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.cookie-preferences-content {
+    background-color: #fff;
+    padding: 20px;
+    width: 90%;
+    max-width: 500px;
+    position: relative;
+}
+
+.cookie-category {
+    margin: 10px 0;
+    background-color: #f9f9f9;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    padding: 10px;
+    background-color: #f1f1f1;
+}
+
+.header span {
+    font-weight: bold;
+}
+
+.switch {
+    display: inline-block;
+    position: relative;
+    width: 34px;
+    height: 20px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 12px;
+    width: 12px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: 0.4s;
+}
+
+input:checked + .slider {
+    background-color: #007bff;
+}
+
+input:checked + .slider:before {
+    transform: translateX(14px);
+}
+
+.explanation-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-out;
+    padding: 0 10px;
+    background-color: #f9f9f9;
+}
+
+.explanation-content.open {
+    max-height: 100px; /* Максимальная высота для раскрытия */
+}
+
+.arrow {
+    font-size: 16px;
+    transition: transform 0.3s;
+}
+
+.header.open .arrow {
+    transform: rotate(180deg);
+}
+
+</style>
+<body>
+
+<!-- Хедер -->
+<header class="navbar navbar-expand-lg navbar-light" style="background-color: rgba(10,151,217, 0.2)">
+    <div class="container">
+        <a class="navbar-brand" href="{% url 'index' %}">
+            <img src="{% static 'images/nuova-curti_logo2.png' %}" alt="Logo" width="200">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'index' %}">HOME</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'chi_siamo' %}">CHI SIAMO</a>
+                </li>
+                <li class="nav-item custom-dropdown">
+                    <a class="nav-link" href="javascript:void(0);" onclick="toggleDropdown()">LA NOSTRA PRODUZIONE</a>
+                    <div class="custom-dropdown-menu" id="customDropdownMenu">
+                        <a class="custom-dropdown-item" href="{% url 'impianto_oleodinamico' %}">IMPIANTO
+                            OLEODINAMICO</a>
+                        <a class="custom-dropdown-item" href="{% url 'impianto_elettrico' %}">IMPIANTO ELETTRICO</a>
+                        <a class="custom-dropdown-item" href="{% url 'impianti_speciali' %}">IMPIANTI SPECIALI</a>
+                        <a class="custom-dropdown-item" href="{% url 'piattaforme_elevatrici' %}">PIATTAFORME
+                            ELEVATRICI</a>
+                        <a class="custom-dropdown-item" href="{% url 'scale_mobili' %}">SCALE MOBILI</a>
+                        <a class="custom-dropdown-item" href="{% url 'tappeti_mobili' %}">TAPPETI MOBILI</a>
+                        <a class="custom-dropdown-item" href="{% url 'marciapiedi_mobili' %}">MARCIAPIEDI MOBILI</a>
+                    </div>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'gallery' %}">GALLERY</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'contatti' %}">CONTATTI</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</header>
+
+<!-- Основной контент -->
+<main>
+    {% block content %}
+    {% endblock %}
+</main>
+
+<!-- Футер -->
+<!-- Футер -->
+<footer style="background-color: rgba(10,151,217, 0.2); color: black;">
+    <div class="container py-5">
+        <div class="row justify-content-between align-items-center">
+            <!-- Логотип -->
+            <div class="col-12 col-md-6 text-center text-md-start mb-4 mb-md-0">
+                <a href="{% url 'index' %}">
+                    <img src="{% static 'images/nuova-curti_logo2.png' %}" alt="Logo" width="250">
+                </a>
+            </div>
+
+            <!-- Контакты -->
+            <div class="col-12 col-md-6 text-center text-md-end">
+                <p><i class="bi bi-telephone"></i> Telefono: (+39) 031 876 187</p>
+                <p><i class="bi bi-envelope"></i> Email: info@nuovacurti.com</p>
+                <p><i class="bi bi-printer"></i> Fax: (+39) 987 654 321</p>
+                <p><i class="bi bi-geo-alt"></i> Indirizzo: Via Pascolo, 6 - 23842 Bosisio Parini (LC)</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Подвал с копирайтом -->
+    <div class="container text-center py-3" style="border-top: 1px solid rgba(10, 151, 217, 0.3);">
+        <p>Nuova Curti srl P.IVA 03411110137</p>
+    </div>
+</footer>
+
+<button onclick="scrollToTop()" id="scrollTopBtn" class="btn btn-primary" title="Вернуться наверх">
+    <i class="bi bi-arrow-up"></i>
+</button>
+
+<div id="cookieConsentModal" class="cookie-consent-modal">
+    <div class="cookie-consent-content">
+        <span class="cookie-consent-close" onclick="closeModal()">&times;</span>
+        <h2 style="padding-top: 15px;">Gestisci Consenso Cookie</h2>
+        <p style="text-align: justify; font-size: 18px;">Per fornire le migliori esperienze, utilizziamo tecnologie come i cookie per memorizzare e/o accedere alle informazioni del dispositivo. Il consenso a queste tecnologie ci permetterà di elaborare dati come il comportamento di navigazione o ID unici su questo sito. Non acconsentire o ritirare il consenso può influire negativamente su alcune caratteristiche e funzioni.</p>
+        <div class="cookie-consent-buttons">
+            <button onclick="acceptCookies()" class="btn btn-primary">ACCEPTA</button>
+            <button onclick="denyCookies()" class="btn btn-secondary">NEGA</button>
+            <button onclick="showPreferences()" class="btn btn-light">VISUALIZZA LE PREFERENZE</button>
+        </div>
+        <div class="cookie-links">
+            <a href="{% url 'cookie_policy' %}">Cookie Policy</a> | <a href="{% url 'privacy_policy' %}">Privacy Policy</a>
+        </div>
+    </div>
+</div>
+
+<!-- Модальное окно настроек куки -->
+<div id="cookiePreferences" class="cookie-preferences-modal">
+    <div class="cookie-preferences-content">
+        <span class="cookie-preferences-close" onclick="closePreferences()">&times;</span>
+        <h2 style="padding-top: 15px;">Gestisci le Preferenze sui Cookie</h2>
+
+        <!-- Категории куки с переключателями и раскрывающимися пояснениями -->
+        <div class="cookie-category">
+            <div class="header" onclick="toggleExplanation('necessariExplanation')">
+                <span>Necessari</span>
+                <div class="switch">
+                    <input type="checkbox" checked disabled>
+                    <span class="slider"></span>
+                </div>
+                <span class="arrow" style="font-size: 8px;">&#x25BC;</span> <!-- Стрелка вниз -->
+            </div>
+            <div id="necessariExplanation" class="explanation-content">
+                <p>Questi cookie sono essenziali per le funzioni di base del sito e non possono essere disattivati.</p>
+            </div>
+        </div>
+
+        <div class="cookie-category">
+            <div class="header" onclick="toggleExplanation('funzionaliExplanation')">
+                <span>Funzionali</span>
+                <label class="switch">
+                    <input type="checkbox" checked disabled>
+                    <span class="slider"></span>
+                </label>
+                <span class="arrow" style="font-size: 8px;">&#x25BC;</span> <!-- Стрелка вниз -->
+            </div>
+            <div id="funzionaliExplanation" class="explanation-content">
+                <p>L'archiviazione tecnica o l'accesso sono strettamente necessari al fine legittimo di consentire l'uso di un servizio specifico esplicitamente richiesto dall'abbonato o dall'utente, o al solo scopo di effettuare la trasmissione di una comunicazione su una rete di comunicazione elettronica.</p>
+            </div>
+        </div>
+
+        <div class="cookie-category">
+            <div class="header" onclick="toggleExplanation('performanceExplanation')">
+                <span>Preferenze</span>
+                <label class="switch">
+                    <input type="checkbox" id="performanceCookies">
+                    <span class="slider"></span>
+                </label>
+                <span class="arrow" style="font-size: 8px;">&#x25BC;</span> <!-- Стрелка вниз -->
+            </div>
+            <div id="performanceExplanation" class="explanation-content">
+                <p>L'archiviazione tecnica o l'accesso sono necessari per lo scopo legittimo di memorizzare le preferenze che non sono richieste dall'abbonato o dall'utente.</p>
+            </div>
+        </div>
+
+        <div class="cookie-category">
+            <div class="header" onclick="toggleExplanation('marketingExplanation')">
+                <span>Marketing</span>
+                <label class="switch">
+                    <input type="checkbox" id="marketingCookies">
+                    <span class="slider"></span>
+                </label>
+                <span class="arrow" style="font-size: 8px;">&#x25BC;</span> <!-- Стрелка вниз -->
+            </div>
+            <div id="marketingExplanation" class="explanation-content">
+                <p>L'archiviazione tecnica o l'accesso sono necessari per creare profili di utenti per inviare pubblicità, o per tracciare l'utente su un sito web o su diversi siti web per scopi di marketing simili.</p>
+            </div>
+        </div>
+
+        <!-- Кнопки сохранения и отмены -->
+        <div class="cookie-preferences-buttons">
+            <button onclick="savePreferences()" class="btn btn-primary">SALVA</button>
+            <button onclick="closePreferences()" class="btn btn-secondary">ANNULLA</button>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Подключение Bootstrap и кастомных скриптов -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    // Функция для открытия/закрытия выпадающего меню
+   function toggleDropdown() {
+const dropdownMenu = document.getElementById('customDropdownMenu');
+dropdownMenu.classList.toggle('active'); // Добавляем/удаляем класс "active"
+}
+
+    // Закрытие выпадающего списка при клике вне его
+    window.onclick = function(event) {
+        if (!event.target.matches('.nav-link')) {
+            const dropdownMenu = document.getElementById('customDropdownMenu');
+            if (dropdownMenu.classList.contains('active')) {
+                dropdownMenu.classList.remove('active');
+            }
+        }
+    }
+</script>
+
+<script>
+    // Показать кнопку, когда пользователь прокрутит вниз 200px от верха страницы
+    window.onscroll = function() {
+        scrollFunction();
+    };
+
+    function scrollFunction() {
+        const scrollTopBtn = document.getElementById("scrollTopBtn");
+        if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+            scrollTopBtn.style.display = "block";
+        } else {
+            scrollTopBtn.style.display = "none";
+        }
+    }
+
+    // Плавная прокрутка страницы наверх
+    function scrollToTop() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    }
+</script>
+
+<script>
+// Функция для открытия модального окна
+function checkCookieConsent() {
+    const cookiesAccepted = document.cookie.split('; ').find(row => row.startsWith('cookies_accepted='));
+    if (!cookiesAccepted) {
+        const modal = document.getElementById("cookieConsentModal");
+        modal.style.display = "block";
+        setTimeout(() => {
+            modal.classList.add("show");
+            document.querySelector(".cookie-consent-content").classList.add("show");
+        }, 100); // Добавляем задержку для анимации
+    }
+}
+
+// Принятие cookie
+function acceptCookies() {
+    document.cookie = "cookies_accepted=true; path=/; max-age=" + 60 * 60 * 24 * 365; // Срок действия 1 год
+    closeModal();
+}
+
+// Отклонение cookie
+function denyCookies() {
+    document.cookie = "cookies_accepted=false; path=/; max-age=" + 60 * 60 * 24 * 365; // Срок действия 1 год
+    closeModal();
+}
+
+// Закрытие модального окна
+function closeModal() {
+    const modal = document.getElementById("cookieConsentModal");
+    modal.classList.remove("show");
+    document.querySelector(".cookie-consent-content").classList.remove("show");
+    setTimeout(() => {
+        modal.style.display = "none";
+    }, 400); // Время для завершения анимации
+}
+
+// Показ настроек (заглушка для примера)
+function showPreferences() {
+    alert("Здесь будут настройки cookie.");
+}
+
+// Запуск проверки при загрузке страницы
+window.onload = checkCookieConsent;
+
+</script>
+
+<script>
+    // Функция для открытия окна настроек куки
+    function showPreferences() {
+        const preferencesModal = document.getElementById("cookiePreferences");
+        preferencesModal.style.display = "block";
+        setTimeout(() => {
+            preferencesModal.classList.add("show");
+        }, 100); // Плавное появление
+    }
+
+    // Функция для закрытия окна настроек куки
+    function closePreferences() {
+        const preferencesModal = document.getElementById("cookiePreferences");
+        preferencesModal.classList.remove("show");
+        setTimeout(() => {
+            preferencesModal.style.display = "none";
+        }, 400); // Плавное исчезновение
+    }
+
+    // Функция для сохранения предпочтений куки
+    function savePreferences() {
+        // Проверяем состояния переключателей
+
+        const performance = document.getElementById("performanceCookies").checked ? "enabled" : "disabled";
+        const marketing = document.getElementById("marketingCookies").checked ? "enabled" : "disabled";
+
+        // Сохраняем предпочтения в куки
+
+        document.cookie = "performance_cookies=" + performance + "; path=/; max-age=" + 60 * 60 * 24 * 365;
+        document.cookie = "marketing_cookies=" + marketing + "; path=/; max-age=" + 60 * 60 * 24 * 365;
+
+        closePreferences();
+    }
+</script>
+<script>
+    function toggleExplanation(id) {
+    const explanation = document.getElementById(id);
+    const header = explanation.previousElementSibling;
+
+    explanation.classList.toggle("open");
+    header.classList.toggle("open");
+}
+
+</script>
+</body>
+</html>

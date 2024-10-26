@@ -1,0 +1,427 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Chi siamo
+{% endblock %}
+
+
+{% block content %}
+<style>
+    p {
+        hyphens: auto;
+        -webkit-hyphens: auto; /* Для поддержки в старых версиях Safari */
+        -moz-hyphens: auto;    /* Для старых версий Firefox */
+        overflow-wrap: break-word;
+    }
+
+    /* Стили для секции */
+    .custom-section {
+        padding: 30px 0;
+        text-align: center;
+        background-color: #f8f9fa;
+    }
+
+    .custom-section h2 {
+        font-size: 2rem;
+        font-weight: 700;
+        margin-bottom: 20px;
+        color: #000000; /* Цвет заголовка в тон сайта */
+    }
+
+    .custom-section h2::after {
+        content: '';
+        display: block;
+        width: 60px;
+        height: 3px;
+        background-color: #0a97d9;
+        margin: 20px auto 20px; /* Отступы для полоски */
+    }
+
+    .custom-section p {
+        text-align: justify;
+        font-size: 1.2rem;
+        color: #555;
+        max-width: 1300px;
+        margin: 0 auto 40px auto;
+    }
+
+    /* Стили для изображения */
+    .image-frame {
+        display: inline-block;
+        border: 3px solid #0a97d9; /* Цвет рамки под цвет сайта */
+        background-color: white;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 1300px;
+    }
+
+    .image-frame img {
+        width: 100%;
+
+        border-radius: 5px;
+    }
+
+
+
+   .timeline-section {
+    padding: 30px 0;
+    background-color: #f8f9fa;
+}
+
+.timeline-section h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.accordion {
+    --bs-accordion-border-radius: 0px;
+}
+
+.accordion-button {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #0a97d9;
+}
+
+.accordion-body {
+    font-size: 1.2rem;
+    color: #555;
+    text-align: justify;
+    hyphens: auto;
+    -webkit-hyphens: auto; /* Для поддержки в старых версиях Safari */
+    -moz-hyphens: auto;    /* Для старых версий Firefox */
+    overflow-wrap: break-word;
+}
+
+.accordion-item {
+    border: 3px solid #0a97d9;
+}
+
+.timeline-image {
+    max-width: 100%;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    border: 3px solid #0a97d9;
+}
+
+@media (max-width: 768px) {
+    .row {
+        flex-direction: column;
+    }
+
+    .col-md-6 {
+        width: 100%;
+        text-align: center;
+    }
+
+    .timeline-image {
+        margin-top: 20px;
+        max-width: 80%;
+    }
+}
+
+    .accordion-button:focus {
+box-shadow: none;
+outline: none;
+}
+
+
+    .timeline-section h2::after {
+        content: '';
+        display: block;
+        width: 60px;
+        height: 3px;
+        background-color: #0a97d9;
+        margin: 20px auto 20px; /* Отступы для полоски */
+    }
+
+</style>
+
+<section class="custom-section">
+    <div class="container">
+        <h2>Gruppo Curti</h2>
+        <p>
+            Il Gruppo Curti nasce a Milano nel 1963 e si espande a Lecco, poi a Valmadrera e, per
+            esigenze logistiche, negli anni ’90 si trasferisce a Bosisio Parini (Lecco), sino a
+            diventare Leader in Italia e nel Mondo, sia nella costruzione che nella messa in opera e
+            manutenzione di ascensori, montacarichi e scale mobili. Grazie allo spirito imprenditoriale
+            di Arnaldo Curti, titolare della Curti Arnaldo, Ditta Individuale, da artigiano si rivolse
+            alle Imprese Edili che gli permisero di allargarsi e svilupparsi anche nel campo Immobiliare,
+            dando vita alla Immobiliare Quadrifoglio S.r.l. e all’Immobiliare Vistamare S.r.l. II desiderio
+            di nuove avventure mette alla prova l’imprenditorialità di Curti Arnaldo che cimenta il proprio
+            ingegno nell’Editoria, nascono così nel 1994 “ACE EDITORIALE S.r.l.”, dove prende vita il Numero
+            Zero di “LECCO 2000”, mensile di Cronaca, Sport, Cultura e Turismo, con 20.000 copie distribuite a
+            livello Nazionale, e in seguito “AFRE music S.r.l.”, Casa Editoriale e Casa Discografica, che lancia
+            nuovi Talenti nei Generi musicali: Pop, Rock, Latino, Folcloristico… Oggi le società del Gruppo Curti
+            si sono ricompattate in due nuove realtà che rispecchiano comunque la vitalità iniziale del gruppo e
+            gli stessi filoni produttivo/economici: la CURTI ARNALDO S.r.l. e la NUOVA CURTI S.r.l.
+        </p>
+        <div class="image-frame">
+            <img src="{% static 'images/nuova-curti-ascensori_cut.jpg' %}" alt="Example Image">
+        </div>
+    </div>
+</section>
+
+<section class="timeline-section">
+    <div class="container">
+        <h2>La nostra storia</h2>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="accordion" id="timelineAccordion">
+                    <div class="accordion-item">
+                        <h3 class="accordion-header" id="heading1963">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapse1963" aria-expanded="false" aria-controls="collapse1976">
+                                1963
+                            </button>
+                        </h3>
+                        <div id="collapse1963" class="accordion-collapse collapse" aria-labelledby="heading1963"
+                             data-bs-parent="#timelineAccordion">
+                            <div class="accordion-body">
+                                Nel 1963, per desiderio del padre, assieme ai fratelli inizia una nuova attività a
+                                Milano, come artigiano nel campo ascensoristico. La scelta di questo settore non è
+                                casuale, ma è la continuazione della professione del padre che aveva iniziato, nel
+                                periodo tra le due guerre, a produrre i primi impianti di ascensori che apparvero sul
+                                mercato italiano. Dopo una breve esperienza con i fratelli a Milano, per colpa di
+                                incomprensioni e con il desiderio di emergere Arnaldo decide di distaccarsi dall’azienda
+                                dei fratelli e di non interferire con loro. Intuisce la necessità di insediarsi in una
+                                zona in espansione che gli permetta di avviare una nuova attività. A luglio del 1965
+                                trova dunque a Lecco un territorio fiorente nel mondo dell’edilizia, ma mancante di
+                                tecnici nel campo ascensoristico, così decide di aprire una piccola officina di 32 mq. a
+                                Lecco in Via Belfiore e di trasferirsi con la moglie Linda e il piccolo Stefano, in un
+                                appartamento a Malgrate. Iniziano le prime costruzioni delle parti meccaniche, con pochi
+                                operai e un’impiegata. Arnaldo alla mattina era venditore e al pomeriggio meccanico
+                                carpentiere e montatore d’impianti di ascensori, esperienza appresa da suo fratello
+                                Romano nei due anni precedenti trascorsi ad installare qualsiasi tipologia d’impianto.
+                                Nel contempo, dovette apprendere il complesso delle nozioni tecniche relative alle
+                                costruzioni e all’industria, imparare a gestire l’azienda e iniziare a guardare al
+                                futuro. Dopo due anni di intenso lavoro, da quattro collaboratori, la ditta Curti si era
+                                piazzata così bene sul mercato locale da raggiungere uno Staff di oltre venticinque
+                                dipendenti. Pertanto, l’azienda sente l’esigenza di trasferirsi in Corso Martiri in un
+                                capannone di 500 mq. La Ditta Curti seleziona i più specializzati fornitori di materiali
+                                necessari, acquisisce i maggiori costruttori della zona e comincia a espandersi con un
+                                sempre maggiore apprezzamento nel territorio Lecchese. Inizia a farsi conoscere per la
+                                serietà e la professionalità, anche nelle pubbliche Amministrazioni, ed è proprio
+                                l’appalto del Comune di Malgrate che dà l’avvio a questo tipo di fornitura
+                                caratterizzato da una competitività sempre più grande.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h3 class="accordion-header" id="heading1976">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapse1976" aria-expanded="false" aria-controls="collapse1976">
+                                1976
+                            </button>
+                        </h3>
+                        <div id="collapse1976" class="accordion-collapse collapse" aria-labelledby="heading1976"
+                             data-bs-parent="#timelineAccordion">
+                            <div class="accordion-body">
+                                Nel 1976 inizia a Valmadrera in Via Rio Torto, 17, la costruzione del capannone di 2.000
+                                mq. con una palazzina per uffici e l’abitazione del custode di 400 mq. Qui, sorge la
+                                necessità di una maggiore specializzazione, e iniziano ad esercitare la loro attività
+                                sia la Società Curti S.r.l., che si occupa della produzione di ascensori, montacarichi,
+                                montavivande, piattaforme elevatrici per disabili, montauto personalizzati e scale
+                                mobili, che la Ditta Curti di Curti Arnaldo, Società individuale, che si occupa
+                                principalmente della riparazione e della manutenzione degli impianti. Arnaldo è sempre
+                                più impegnato giorno e notte per accrescere la sua Azienda; la moglie Linda, dopo
+                                avergli dato tre figli: Stefano, Luciano e Paola, sente il bisogno nel tempo libero di
+                                tenersi occupata, così Arnaldo, nel 1973 le apre un negozio per la vendita di quadri e
+                                oggetti d’Arte. Per tre anni Linda trova la viva soddisfazione di sentirsi utile e
+                                impegnata, ma nel 1976, non riuscendo più a vedersi con il marito troppo impegnato a
+                                progettare ascensori, esprime il desiderio, con ammirevole interesse, di lavorare
+                                assieme a lui per la Società.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h3 class="accordion-header" id="heading1983">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapse1983" aria-expanded="false" aria-controls="collapse1976">
+                                1983
+                            </button>
+                        </h3>
+                        <div id="collapse1983" class="accordion-collapse collapse" aria-labelledby="heading1983"
+                             data-bs-parent="#timelineAccordion">
+                            <div class="accordion-body">
+                                Il 1983, per il Gruppo Curti, è un momento fiorente, gli operai sono raddoppiati e
+                                vengono assunti con una strategia di espansione: ogni 50 km un ragazzo serio e
+                                volonteroso entra a far parte dell’Azienda venendo istruito e patentato a tecnico
+                                specializzato. L’ampliamento del mercato richiede sempre più rappresentanti di vendita e
+                                tecnici verso la Brianza, Milano, Bergamo, Varese e Como, ma la zona commercialmente più
+                                redditizia è la Valtellina. Curti Arnaldo decide dunque di assumere sempre più tecnici
+                                che risiedano in zone vicine ai cantieri valtellinesi: Morbegno, Tirano, Bormio,
+                                Livigno, in modo da ridurre i tempi di manutenzione. Infatti, se in precedenza i tempi
+                                di intervento su un impianto fermo erano di due o tre giorni, con questa strategia, in
+                                sole due ore il tecnico poteva intervenire sul posto. Inoltre, nello stesso periodo è
+                                stata aperta, tramite una consociata, una filiale a Milano e un’altra a Palermo. Anche
+                                il mercato estero ha dato dei buoni risultati: la Curti S.r.l. ha fornito impianti in
+                                Egitto, in Sudan, nell’Ufficio del Presidente, nell’abitazione del Ministro degli
+                                Esteri, nella Questura (in Sudan ha anche una filiale), in Libia a Nairobi e nelle ville
+                                di Gheddafi ed anche nelle caserme dove vivevano gli ufficiali. La Ditta produce
+                                ascensori anche nel campo della Moda: uno a Parigi per Giorgio Armani, uno particolare
+                                con la cabina a forma di zucca in cristallo a Milano per Just Cavalli, uno in Kazakistan
+                                per la Casa residenziale del Papa Wojtyla. Nel frattempo entrano a far parte del mondo
+                                del lavoro in Azienda i figli: Stefano rappresentante per la vendita in Italia, Luciano
+                                per l’estero e Paola per l’Amministrazione.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h3 class="accordion-header" id="heading1985">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapse1985" aria-expanded="false" aria-controls="collapse1976">
+                                1985
+                            </button>
+                        </h3>
+                        <div id="collapse1985" class="accordion-collapse collapse" aria-labelledby="heading1985"
+                             data-bs-parent="#timelineAccordion">
+                            <div class="accordion-body">
+                                Dà vita nel 1985 ad una Società per la costruzione di un complesso Immobiliare
+                                costituito da un centinaio di appartamenti e di villette a Trezzo Sull’Adda, di cui
+                                Arnaldo Curti è Amministratore Unico. Inizia – prima con la Curti Porte S.r.l e
+                                successivamente con la Curti S.r.l. – la costruzione di porte blindate e porte
+                                tagliafuoco che il mercato richiede con decine di porte ogni giorno, grazie agli
+                                adeguati macchinari presenti nella sua azienda. Questa produzione richiede sempre
+                                maggiore spazio e sempre nel 1985, Curti decide di prendere in affitto un capannone
+                                adiacente all’esistente, raddoppiando così la metratura disponibile.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h3 class="accordion-header" id="heading1990">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapse1990" aria-expanded="false" aria-controls="collapse1976">
+                                1990
+                            </button>
+                        </h3>
+                        <div id="collapse1990" class="accordion-collapse collapse" aria-labelledby="heading1990"
+                             data-bs-parent="#timelineAccordion">
+                            <div class="accordion-body">
+                                Un mercato di notevoli soddisfazione è quello inglese che ha richiesto impianti con
+                                elevate caratteristiche sia tecniche che estetiche. Un nuovo commercio si è poi aperto
+                                anche in Kuwait con una produzione mensile di parecchi impianti. In officina, gli operai
+                                della Curti producevano con soddisfazione oltre 80 impianti ogni anno, senza riscontrare
+                                alcun problema, fino al momento dello scoppio della Guerra in Kuwait nel 1990. A causa
+                                di questo conflitto, a Genova vennero bloccati i container che ritornarono poi nel
+                                magazzino della Società di Valmadrera. Pochi giorni dopo, l’inondazione dovuta allo
+                                straripamento del fiume Rio Torto, ha messo in ginocchio entrambe le Società Curti, in
+                                un già difficile momento economico in cui veniva ultimata, per necessità di espansione
+                                dell’Azienda, a Bosisio Parini (Lecco), la costruzione di un capannone di 10.000 mq. e
+                                di due palazzine di 1.000 mq. cadauna. La nuova struttura è composta da uffici e servizi
+                                che consentirono un miglioramento per il lavoro in officina e una standardizzazione
+                                della produzione per migliorare ulteriormente sia il prodotto che i tempi di consegna.
+                                Si pone quindi la tragica necessità di reperire economicamente un miliardo e novecento
+                                milioni delle vecchie Lire, ammontare dichiarato dal Tribunale di Lecco, per riparare ai
+                                danni subiti dell’alluvione, non riconosciuti neppure dall’Assicurazione poiché non
+                                copre questo tipo di inondazioni. Arnaldo si chiude dunque in un ostentato atteggiamento
+                                di rifiuto a parlarne e Federica, la moglie, insiste perché teme le conseguenze della
+                                gravità della situazione. Rimane poi stupita dalla risposta del marito che dimostra la
+                                sua tenacia di uomo: “Non posso che rassegnarmi al destino, con la cassetta dei ferri
+                                sono partito e con la cassetta dei ferri ritorno”.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h3 class="accordion-header" id="heading1994">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapse1994" aria-expanded="false" aria-controls="collapse1976">
+                                1994
+                            </button>
+                        </h3>
+                        <div id="collapse1994" class="accordion-collapse collapse" aria-labelledby="heading1994"
+                             data-bs-parent="#timelineAccordion">
+                            <div class="accordion-body">
+                                In campo ascensoristico è necessario un continuo aggiornamento, sia per la tecnica, sia
+                                per la normativa. Pertanto, nel 1994 il Gruppo Curti sente la necessità di attestarsi
+                                diversi Certificati di Idoneità e si rivolge a due diversi Enti: ottiene il Quality
+                                Certificate LRQA UNI – BS – EN ISO 9001:1994 CURTI CERTIFICATE N. 945034 dalla “LLOYD’S
+                                REGISTER QUALITY ASSURANCE”, uno tra i primi Organismi di Ispezione, Verifica e
+                                Certificazione al mondo;
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h3 class="accordion-header" id="heading2000">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapse2000" aria-expanded="false" aria-controls="collapse1976">
+                                2000
+                            </button>
+                        </h3>
+                        <div id="collapse2000" class="accordion-collapse collapse" aria-labelledby="heading2000"
+                             data-bs-parent="#timelineAccordion">
+                            <div class="accordion-body">
+                                Nel 2000 si rivolge al TÜV Italia e ottiene la Certificazione ISO 9001:2000 per la
+                                progettazione, produzione, installazione, nonché per la manutenzione di ascensori e
+                                montacarichi. Con lungimiranza entra a far parte dei mercati dell’Est, facendo, nel
+                                1998, delle Fiere al Gran Palazzo del Cremlino di Mosca e in tutti i Paesi limitrofi e,
+                                in pochi mesi, diventa esclusivista per la commercializzazione di ascensori,
+                                montacarichi e scale mobili per l’Italia e i seguenti Paesi: Argentina, Bangladesh,
+                                Benin, Germany, Iran, Malta, Nigeria, Palestine, Romania, Russia, Sudan, Syria, Turkey,
+                                Ukraine. È l’unica azienda con due certificazioni per esportare nella C.S.I. (ex
+                                U.R.S.S.) e un’ulteriore certificazione per l’Ucraina e la Polonia. Riesce a farsi
+                                attestare con Certificati d’Idoneità nel campo ascensoristico, conquistando così la
+                                facoltà di poter vendere e installare, con la collaborazione di una nuova Società di
+                                Ascensori istruita a Mosca, specializzata nell’istallazione e nella manutenzione degli
+                                impianti.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h3 class="accordion-header" id="heading2009">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapse2009" aria-expanded="false" aria-controls="collapse1976">
+                                2009
+                            </button>
+                        </h3>
+                        <div id="collapse2009" class="accordion-collapse collapse" aria-labelledby="heading2009"
+                             data-bs-parent="#timelineAccordion">
+                            <div class="accordion-body">
+                                Il Gruppo Curti è giunto al 2009 con oltre 100 dipendenti, una ventina di artigiani
+                                esterni e con oltre 5.000 impianti costruiti tra ascensori, montacarichi, montavivande,
+                                piattaforme elevatrici per disabili, montauto personalizzati e scale mobili di cui si
+                                teneva anche la manutenzione. La scelta politica aziendale e stata quella di vendere il
+                                ramo d’ Azienda alla multinazionale tedesca Thyssenkrupp Elevator Italia che, grazie
+                                all’apporto del grosso pacchetto ascensoristico del Gruppo Curti, si è trasformata in
+                                una multinazionale anche in questo campo.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h3 class="accordion-header" id="heading2018">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapse2018" aria-expanded="false" aria-controls="collapse1976">
+                                2018
+                            </button>
+                        </h3>
+                        <div id="collapse2018" class="accordion-collapse collapse" aria-labelledby="heading2018"
+                             data-bs-parent="#timelineAccordion">
+                            <div class="accordion-body">
+                                Rispettati oltre cinque anni di Legge verso la società acquirente, l’imprenditore
+                                Arnaldo Curti, ottantenne, propone ai figli con la loro Azienda di rientrare a far parte
+                                della storica Società di famiglia. Nell’aprile del 2018 la Azienda dei figli viene
+                                incorporata nella Nuova CURTI S.r.l.
+                                Oggi le società del Gruppo Curti si sono ricompattate in due nuove realtà che
+                                rispecchiano comunque la vitalità iniziale del gruppo e gli stessi filoni
+                                produttivo/economici: la CURTI ARNALDO S.r.l. e la NUOVA CURTI S.r.l.
+                                Immediatamente il primogenito Stefano Curti con la mansione di Direttore Responsabile
+                                della sezione vendita degli ascensori per l’Italia e l’Estero, con la collaborazione
+                                dell’Ingegnere Daniel Mantia, mentre l’ Arch.dipl.ID Luciano Curti è responsabile delle
+                                Vendite all’Estero.
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Добавьте остальные события по аналогии -->
+                </div>
+            </div>
+            <div class="col-md-6 text-center">
+                <img src="{% static 'images/1934-Natale-a-Beirut.jpg' %}" alt="Example Image"
+                     class="img-fluid timeline-image">
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,231 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Chi siamo
+{% endblock %}
+
+
+{% block content %}
+<style>
+    p {
+        hyphens: auto;
+        -webkit-hyphens: auto; /* Для поддержки в старых версиях Safari */
+        -moz-hyphens: auto;    /* Для старых версий Firefox */
+        overflow-wrap: break-word;
+    }
+    .custom-table-section {
+        padding: 30px 0;
+    }
+
+    .table-responsive {
+        margin-top: 20px;
+    }
+
+    .table th, .table td {
+        text-align: center;
+        vertical-align: middle;
+    }
+
+    .table th {
+        background-color: #0a97d9;
+        color: #ffffff;
+    }
+
+
+    .table-striped > tbody > tr:nth-of-type(odd) {
+        background-color: rgba(10, 151, 217, 0.1); /* Светлый голубой для чередующихся строк */
+    }
+
+     .custom-table-section h2 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .custom-table-section p {
+        font-size: 1.2rem;
+        margin-bottom: 30px;
+        color: #555;
+        text-align: justify;
+    }
+
+    .custom-table-section h2::after {
+        content: '';
+        display: block;
+        text-align: left;
+        width: 60px;
+        height: 3px;
+        background-color: #0a97d9;
+        margin: 20px auto 20px;
+    }
+
+    .custom-table-section h3::after {
+        content: '';
+        display: block;
+        text-align: left;
+        width: 60px;
+        height: 3px;
+        background-color: #0a97d9;
+        margin: 20px 0 20px 0;
+    }
+</style>
+
+<section class="custom-table-section">
+    <div class="container">
+        <h2>Privacy Policy</h2>
+        <h3>Informativa sul trattamento dei dati personali ai sensi degli art. 13 e 14 del Regolamento UE 679/2016</h3>
+        <p>
+            Con la presente La informiamo che, ai sensi degli art. 13 e 14 del Regolamento UE 679/2016 (di seguito
+            ‘GDPR’), i Suoi dati a noi conferiti attraverso l’utilizzo del sito web <b style="color: black;">www.nuovacurti.com</b>
+            (di seguito,
+            anche solo “Sito”) saranno trattati come segue, nel rispetto dei principi di correttezza, liceità,
+            trasparenza e di tutela della Sua riservatezza e dei Suoi diritti. La presente informativa fornisce
+            all’utente (Interessato al trattamento) ogni ulteriore informazione necessaria ad assicurare un trattamento
+            corretto e trasparente, in relazione al contesto specifico in cui i dati personali sono raccolti e
+            successivamente trattati.
+            <br>La presente informativa è resa solo per il Sito e i sottodomini ad esso correlati e non anche per i
+            siti
+            web di terze parti accessibili tramite collegamenti ipertestuali (link) contenuti nel Sito, di cui il
+            Titolare del trattamento non è in alcun modo responsabile. Per tali trattamenti dovrà essere fornita, da
+            parte dei rispettivi Titolari, autonoma informativa.
+        </p>
+        <h3>Titolare del Trattamento
+            <br>(chi decide come e perché i Suoi dati sono trattati)</h3>
+        <p>
+            Il Titolare del trattamento è Nuova Curti srl
+            <br>P.IVA 03411110137
+        </p>
+        <h3>Finalità del trattamento</h3>
+        <p>
+            (qual è lo scopo del trattamento dei dati)
+        </p>
+        <p>
+            monitorare il funzionamento tecnico e le prestazioni del sito, permettere l’assistenza tecnica e la
+            manutenzione e, in generale, le attività̀ strumentali ad assicurare il buon funzionamento del Sito ottenere
+            informazioni statistiche anonime sull’uso dei servizi (pagine più visitate, numero di visitatori per fascia
+            oraria o giornaliera, aree geografiche di provenienza, ecc…) erogazione dei servizi offerti tramite il Sito
+            rispondere alle richieste inviate mediante mail o compilazione del modulo online inviare comunicazioni di
+            natura commerciale e promozionale mediante posta elettronica.
+        </p>
+        <h3>Base giuridica del trattamento</h3>
+        <p>
+            Il Titolare tratta i Suoi dati di navigazione anonimi al fine di monitorare il funzionamento tecnico e le
+            prestazioni del sito, per capire come migliorare i servizi e farli evolvere. Tali dati sono necessari a
+            garantire l’erogazione del sito. L’invio facoltativo, esplicito e volontario di messaggi agli indirizzi di
+            contatto, nonché la compilazione e l’inoltro del Modulo di Contatto presente sul Sito, comportano
+            l’acquisizione dei dati di contatto del mittente, necessari a rispondere, nonché di tutti i dati personali
+            inclusi nelle comunicazioni. La ricezione di comunicazioni di natura commerciale e promozionale sulla Sua
+            casella di posta elettronica si basa sul consenso. Qualora decidesse di iscriversi alla nostra newsletter,
+            attraverso il sito o compilando uno dei moduli di contatto presenti sui nostri canali di Marketing, la
+            informiamo che potrà revocare la registrazione in qualsiasi momento.
+        </p>
+        <h3>Destinatari
+            <br>(Soggetti ai quali potranno essere comunicati i dati)</h3>
+        <p>
+            Oltre al Titolare potrebbero avere accesso ai Dati altri soggetti coinvolti nell’organizzazione (personale
+            incaricato) ovvero soggetti esterni (fornitori di servizi tecnici terzi, hosting provider) nominati anche,
+            se necessario, Responsabili del Trattamento da parte del Titolare. L’elenco aggiornato dei Responsabili
+            potrà sempre essere richiesto al Titolare del Trattamento.
+        </p>
+        <h3>Diffusione</h3>
+        <p>
+            In alcun caso i dati personali saranno comunicati, diffusi, ceduti o comunque trasferiti a terzi per scopi
+            illeciti e, comunque, senza rendere idonea informativa agli Interessati e acquisirne il consenso, ove
+            richiesto dalla legge. Resta salva l’eventuale comunicazione dei dati su richiesta dell’autorità
+            giudiziaria o di pubblica sicurezza, nei modi e nei casi previsti dalla legge.
+        </p>
+        <h3>
+            Modalità del trattamento
+        </h3>
+        <p>
+            Il trattamento sarà̀ effettuato mediante strumenti cartacei e/o informatici, anche a mezzo di soggetti a
+            ciò̀ autorizzati, che operano sotto la diretta autorità̀ e secondo le istruzioni impartite dal Titolare, con
+            logiche strettamente correlate alle finalità̀ indicate e, comunque, in modo da garantire la sicurezza e la
+            riservatezza dei dati trattati.
+        </p>
+        <p>
+            Le operazioni di trattamento sono svolte in modo da garantire la sicurezza dei dati e dei sistemi. Sono
+            adottate specifiche misure di sicurezza al fine di ridurre al minimo i rischi di distruzione o di perdita,
+            anche accidentale, dei dati stessi, di accesso non autorizzato, di trattamento non consentito o non conforme
+            rispetto alle finalità̀ indicate nella presente informativa. In particolare, il Sito utilizza il protocollo
+            HTTPS per l’autenticazione del server e la cifratura del canale di comunicazione. Le misure di sicurezza
+            adottate, tuttavia, non consentono di escludere in via assoluta i rischi di intercettazione o compromissione
+            dei dati personali trasmessi con strumenti telematici. Si raccomanda, pertanto, di verificare che il
+            dispositivo in uso all’utente sia dotato di sistemi software adeguati per la protezione della trasmissione
+            telematica di dati, sia in entrata, che in uscita (come, ad esempio, sistemi antivirus aggiornati, firewall
+            e filtri antispam).
+            <br>Trasferimento dati all’estero
+            <br>I dati personali non saranno trasferiti all’estero, verso Paesi o Organizzazioni internazionali non
+            appartenenti all’Unione Europea che non garantiscono un livello di protezione adeguato, riconosciuto, ai
+            sensi dell’art. 45 GDPR, sulla base di una decisione di adeguatezza della Commissione UE. Nel caso in cui si
+            renda necessario per l’erogazione dei servizi del Sito, il trasferimento dei dati personali verso Paesi o
+            Organizzazioni internazionali extra UE, per cui la Commissione non abbia adottato alcuna decisione di
+            adeguatezza ai sensi dell’art. 45 GDPR, avrà luogo solo in presenza di garanzie adeguate fornite dal Paese
+            o dall’Organizzazione destinatari, ai sensi dell’art. 46 GDPR e a condizione che gli interessati dispongano
+            di diritti azionabili e mezzi di ricorso effettivi. In mancanza di una decisione di adeguatezza della
+            Commissione, ai sensi dell’art. 45 GDPR, o di garanzie adeguate, ai sensi dell’art. 46 GDPR, comprese le
+            norme vincolanti d’impresa, il trasferimento transfrontaliero avrà luogo soltanto se si verifica una delle
+            condizioni indicate all’art. 49 GDPR.
+            <br>Categorie dei dati e Periodo di conservazione
+        </p>
+        <h3>
+            I dati trattati possono essere:
+        </h3>
+        <p>
+            a) Dati di navigazione
+<br>I dati di navigazione, raccolti con modalità̀ automatiche, esclusivamente al fine di ottenere informazioni statistiche aggregate e rese anonime relative all’uso del Sito (tra cui, a titolo esemplificativo, indirizzi IP, orari di navigazione, dati geografici e altri parametri relativi al sistema operativo e all’ambiente informatico dell’utente); tali informazioni potrebbero tuttavia, anche attraverso elaborazioni e/o associazioni con altri dati, detenuti dal provider o da terzi, consentire di risalire all’identità̀ dell’utente; i dati di navigazione non vengono, né verranno in nessun caso utilizzati dal Titolare per compiere attività̀ di profilazione dell’utente né saranno diffusi o comunicati a terzi;
+        </p>
+        <p>
+            b) Cookie
+<br>Il presente sito utilizza cookies o marcatori, che tecnicamente sono pacchetti di informazioni inviate da un web server (in questo caso, dal presente sito) al browser dell’utente e da quest’ultimo memorizzati sul proprio dispositivo (personal computer, tablet, cellulare, ecc.) e rinviati automaticamente al server ad ogni successivo accesso al sito. Per conoscere tipologia e finalità dei cookie utilizzati è possibile consultare l’apposita Cookie Policy presente sul sito.
+        </p>
+        <p>
+            c) Dati forniti volontariamente dagli utenti/visitatori
+<br>Qualora collegandosi a questo sito deciderà, laddove previsto, di inviare i suoi dati personali (per esempio: nome, cognome, indirizzo email) per accedere a determinati servizi, ovvero, per effettuare richieste via posta elettronica, il Titolare tratterà tali dati per rispondere alla Sua richiesta, in conformità con la presente informativa. I dati forniti dall’utente potranno essere acquisiti e memorizzati dal Titolare, in forma elettronica, per le finalità̀ connesse alla loro raccolta tramite il Sito e non verranno utilizzati per attività̀ di profilazione o di marketing diretto. L’invio, facoltativo e volontario, di messaggi di posta elettronica agli indirizzi indicati sul Sito, in particolare, comporta l’acquisizione e il conseguente trattamento dell’indirizzo del mittente e degli eventuali altri dati personali presenti nel messaggio, nella misura necessaria a fornire riscontro alle richieste dell’Interessato.
+        </p>
+        <p>
+            d) Dati resi volontariamente dall’utente, mediante compilazione dei form presenti sui nostri canali di Marketing.
+<br>Tali dati, previo consenso, verranno utilizzati per l’invio di comunicazione di natura commerciale/promozionale mediante posta elettronica.
+        </p>
+        <p>
+            I dati oggetto di trattamento saranno conservati per un periodo di tempo non superiore a quello necessario a conseguire gli scopi per i quali essi sono stati raccolti o successivamente trattati, per il tempo necessario ad erogare il servizio richiesto e per gestire eventuali contestazioni o fino alla revoca del consenso laddove richiesto.
+        </p>
+        <h3>
+            Diritti
+        </h3>
+        <p>
+            Gli Interessati possono esercitare determinati diritti con riferimento ai Dati trattati dal Titolare. In particolare, Lei ha il diritto di:
+<br>accedere ai propri Dati: ha diritto ad ottenere informazioni sui Dati trattati dal Titolare, su determinati aspetti del trattamento ed a ricevere una copia dei Dati trattati.
+<br>verificare e chiedere la rettificazione: può verificare la correttezza dei propri Dati e richiederne l’aggiornamento o la correzione.
+<br>ottenere la cancellazione o rimozione dei propri Dati Personali: quando ricorrono determinate condizioni, Lei può richiedere la cancellazione dei propri Dati da parte del Titolare.
+        </p>
+        <h3>
+            Revocare il consenso in ogni momento: può revocare il consenso al trattamento dei propri Dati Personali precedentemente espresso.
+        </h3>
+        <p>
+            opporsi al trattamento dei propri Dati: può opporsi al trattamento dei propri Dati quando esso avviene su una base giuridica diversa dal consenso.
+<br>ottenere la limitazione del trattamento: quando ricorrono determinate condizioni, Lei può richiedere la limitazione del trattamento dei propri Dati.
+<br>ottenere la portabilità dei dati: ha diritto di ricevere i propri Dati in formato strutturato, di uso comune e leggibile da dispositivo automatico e, ove tecnicamente fattibile, di ottenerne il trasferimento senza ostacoli ad un altro titolare. Questa disposizione è applicabile quando i Dati sono trattati con strumenti automatizzati ed il trattamento è basato sul consenso, su un contratto di cui Lei è parte o su misure contrattuali ad esso connesse.
+<br>proporre reclamo: può proporre un reclamo all’autorità di controllo della protezione dei dati personali competente o agire in sede giudiziale.
+        </p>
+        <h3>
+            Dettagli sul diritto di opposizione
+        </h3>
+        <p>
+            Quando i Dati Personali sono trattati nell’interesse pubblico, nell’esercizio di pubblici poteri di cui è investito il Titolare oppure per perseguire un interesse legittimo del Titolare, Lei ha diritto ad opporsi al trattamento per motivi connessi alla Sua situazione particolare.
+<br>Si fa presente che, ove i Suoi Dati fossero trattati con finalità di marketing diretto, può opporsi al trattamento senza fornire alcuna motivazione.
+        </p>
+        <h3>
+            Come esercitare i diritti
+        </h3>
+        <p>
+            Per esercitare i Suoi diritti, può indirizzare una richiesta agli estremi di contatto del Titolare indicati in questo documento. Le richieste sono depositate a titolo gratuito ed evase dal Titolare nel più breve tempo possibile, in ogni caso entro un mese.
+<br>L’Interessato può avvalersi, per l’esercizio dei suoi diritti, di organismi, organizzazioni o associazioni senza scopo di lucro, i cui obiettivi statutari siano di pubblico interesse e che siano attivi nel settore della protezione dei diritti e delle libertà degli Interessati con riguardo alla protezione dei dati personali, conferendo, a tal fine, idoneo mandato. L’Interessato può, altresì, farsi assistere da una persona di fiducia.
+<br>Per conoscere i propri diritti, proporre un reclamo/segnalazione/ricorso ed essere sempre aggiornato sulla normativa in materia di tutela delle persone rispetto al trattamento dei dati personali, l’Interessato può rivolgersi all’Autorità Garante per la protezione dei dati personali, consultando il sito web all’indirizzo http://www.garanteprivacy.it/.
+        </p>
+    </div>
+</section>
+
+{% endblock %}

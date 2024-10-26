@@ -1,0 +1,666 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Главная страница
+{% endblock %}
+
+
+{% block content %}
+<style>
+    p {
+        hyphens: auto;
+        -webkit-hyphens: auto; /* Для поддержки в старых версиях Safari */
+        -moz-hyphens: auto;    /* Для старых версий Firefox */
+        overflow-wrap: break-word;
+    }
+
+    /* Обеспечиваем, чтобы все карточки имели одинаковую высоту */
+ .card {
+     display: flex;
+     flex-direction: column;
+     justify-content: space-between;
+ }
+
+ .card-body {
+     flex-grow: 1; /* Заполняет пространство, чтобы высота была одинаковой */
+     padding: 30px;
+ }
+
+ /* Стили для иконок проектов */
+ .project-icon {
+     color: #4c5359; /* Изначальный цвет иконки */
+     transition: color 0.3s ease;
+ }
+
+ /* Стили для заголовков проектов */
+ .project-title {
+     position: relative;
+     display: inline-block;
+     padding-bottom: 5px;
+     transition: color 0.3s ease;
+ }
+
+ .project-title::after {
+     content: '';
+     position: absolute;
+     left: 0;
+     bottom: 0;
+     width: 0;
+     height: 2px;
+     background-color: #0a97d9; /* Синий цвет подчеркивания */
+     transition: width 0.3s ease;
+ }
+
+ /* При наведении на карточку проекта */
+ .project-card:hover .project-icon {
+     color: #0a97d9; /* Меняем цвет иконки на синий при наведении */
+ }
+
+ .project-card:hover .project-title::after {
+     width: 100%; /* Полоса подчеркивает название проекта */
+ }
+
+ .project-card:hover .project-title {
+     color: #0a97d9; /* Меняем цвет текста при наведении */
+ }
+
+ .text-overlay-section {
+     background-size: cover;
+     background-position: center;
+     position: relative;
+ }
+
+ .text-box {
+     background-color: white;
+     border-radius: 10px;
+     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+     padding: 30px;
+     max-width: 800px;
+ }
+
+ .text-box h2 {
+     font-size: 28px;
+     font-weight: bold;
+ }
+
+ .text-box p {
+     font-size: 18px;
+     color: #555;
+ }
+
+    .text-with-line {
+        position: relative;
+        padding-top: 20px;
+    }
+    .text-with-line::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 20px;
+        height: 2px;
+        background-color: #007bff; /* Синий цвет полоски */
+    }
+
+
+
+
+    .tabs {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+    }
+
+    .tab-button {
+        background-color: #0a97d9;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        margin: 0 8px;
+
+    }
+
+    .tab-button.active {
+        background-color: #0056b3;
+    }
+
+    .tab-content {
+        display: none;
+        text-align: center;
+    }
+
+    .tab-content.active {
+        display: block;
+    }
+
+    @media (max-width: 450px) {
+        .tabs {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .tab-button {
+            width: 100%;
+            max-width: 150px;
+            margin-bottom: 15px;
+        }
+    }
+
+    .certification-item {
+        padding: 10px 0;
+        font-size: 18px;
+        border: 3px solid #0a97d9;
+        margin: 0 auto;
+        width: 100%;
+        max-width: 500px;;
+    }
+
+
+
+    .hero {
+    position: relative;
+    overflow: hidden; /* Скрываем контент, который будет за пределами секции */
+    animation: slideUp 1s ease-out forwards; /* Применяем анимацию при загрузке секции */
+    transform: translateY(150%); /* Начальное положение секции ниже экрана */
+    opacity: 0; /* Скрываем секцию до начала анимации */
+}
+
+/* Определяем анимацию */
+@keyframes slideUp {
+    to {
+        transform: translateY(0); /* Секция перемещается вверх */
+        opacity: 1; /* Показываем секцию во время анимации */
+    }
+}
+
+
+    .about-us {
+    position: relative;
+    overflow: hidden;
+    animation: slideLeft 1s ease-out forwards;
+    animation-delay: 1s; /* Задержка, чтобы начать анимацию после "hero" */
+    transform: translateX(-100%); /* Начальное положение слева за экраном */
+    opacity: 0; /* Скрываем до начала анимации */
+}
+
+/* Определяем анимацию для выезда секции "about-us" */
+@keyframes slideLeft {
+    to {
+        transform: translateX(0); /* Секция перемещается на своё место */
+        opacity: 1; /* Показываем секцию */
+    }
+}
+
+
+  @keyframes slideUp {
+    from {
+        transform: translateY(100px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Изначальные стили для карточек */
+.project-card {
+    opacity: 0;
+    transform: translateY(100px);
+}
+
+/* Класс для активации анимации */
+.project-card.visible {
+    animation: slideUp 0.8s ease-out forwards;
+}
+
+
+    /* Изначальное состояние блока (невидимый и ниже экрана) */
+.animated-box {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+/* Когда блок видим (плавное появление и подъем на место) */
+.animated-box.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.contact-section {
+    opacity: 0; /* Изначально блок невидим */
+    transform: translateY(300px); /* Изначально смещен вниз за пределы экрана */
+    transition: transform 1s ease-out, opacity 1s ease-out; /* Плавный переход */
+    z-index: 10; /* Поверхность формы над фоном */
+}
+
+
+    .contact-section.visible {
+    opacity: 1;
+    transform: translateY(0);
+    padding: 20px;
+     /* Форма поднимается в исходное положение */
+}
+
+
+
+
+    .hero img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+    }
+    .about-us img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+    }
+
+
+    /* Настройки для больших экранов */
+    @media (max-width: 769px) {
+        .hero img {
+            width: 100%;
+            height: 350px;
+        }
+
+
+        /* Отступы для десктопа */
+
+    }
+
+    @media (max-width: 500px) {
+        .hero img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+        }
+
+        .about-us img{
+            width: 100%;
+            height: 17px;
+            object-fit: cover;
+        }
+
+    }
+
+
+    alert-container {
+        position: fixed;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100px;
+        max-width: 100px;
+        z-index: 1050;
+        padding: 10px;
+        text-align: center;
+    }
+
+    .alert {
+        background-color: #28a745; /* Зеленый цвет для успешного сообщения */
+        color: white;
+        border-radius: 4px;
+        padding: 15px;
+        font-size: 1.2rem;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        opacity: 1;
+        transition: opacity 1s ease-out; /* Плавное исчезновение */
+        width: 100%;
+        max-width: 300px;
+        margin: 0 auto;
+    }
+
+    .fade-out {
+        opacity: 0;
+    }
+</style>
+<!-- Карусель -->
+<section class="hero">
+    {% if messages %}
+    <div class="container">
+        {% for message in messages %}
+        <div class="alert alert-success" role="alert">
+            {{ message }}
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="{% static 'images/nuova-curti.png' %}" class="d-block" alt="Slider Image 1"
+                     style="width: 100%;">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Раздел О нас -->
+<section class="about-us py-5">
+    <div class="container">
+        <img src="{% static 'images/nuova-curti-fondazione_copianero.png' %}" class="d-block" alt="Slider Image 1"
+             style="width: 100%;">
+    </div>
+</section>
+
+<!-- Проекты -->
+<section class="projects py-5" id="projectsSection">
+    <div class="container">
+        <div class="row">
+            <!-- Первый блок -->
+            <div class="col-md-4 d-flex align-items-stretch">
+
+                <div class="card text-center project-card flex-fill"
+                     style="border-radius: 0px; border: 0px solid; background-color: rgba(41, 164, 217, 0.15);">
+                    <a href="{% url 'ascensori_montacarichi_e_piattaform' %}" class="card-link" style="text-decoration: none; color: inherit;">
+                        <i class="material-icons project-icon"
+                           style="font-size: 3.5rem; padding-top: 20px;">elevator</i>
+                        <div class="card-body">
+                            <h5 class="card-title project-title" style="font-size: 25px;">Ascensori, Montacarichi e
+                                Piattaforme</h5>
+                            <p class="card-text">Costruzione, montaggio, riparazione e manutenzione ascensori e
+                                montacarichi
+                                di grosse e piccole portate</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Второй блок -->
+            <div class="col-md-4 d-flex align-items-stretch">
+
+                <div class="card text-center project-card flex-fill"
+                     style="border-radius: 0px; border: 0px solid; background-color: rgba(41, 211, 217, 0.15);">
+                    <a href="{% url 'scale_e_tappeti_mobili' %}" class="card-link" style="text-decoration: none; color: inherit;">
+                        <i class="material-icons project-icon"
+                           style="font-size: 3.5rem; padding-top: 20px;">escalator</i>
+                        <div class="card-body">
+                            <h5 class="card-title project-title" style="font-size: 25px;">Scale e tappeti mobili</h5>
+
+                            <p class="card-text">Vendita, installazione, riparazione e manutenzione scale e tappeti
+                                mobili</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Третий блок -->
+            <div class="col-md-4 d-flex align-items-stretch">
+
+                <div class="card text-center project-card flex-fill"
+                     style="border-radius: 0px; border: 0px solid; background-color: rgba(41, 164, 217, 0.15);">
+                    <a href="https://curtieditore.it/categoria-prodotto/immobiliare/" class="card-link" style="text-decoration: none; color: inherit;">
+                        <i class="material-icons project-icon" style="font-size: 3.5rem; padding-top: 20px;">maps_home_work</i>
+                        <div class="card-body">
+                            <h5 class="card-title project-title" style="font-size: 25px;">Attività immobiliare</h5>
+                            <p class="card-text">Nuova Curti srl si occupa anche di attività immobiliare</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="text-overlay-section py-5"
+         style="background-image: url('{% static 'images/otis_home_elevator-slide-image-3-1024x706.jpg' %}'); background-size: cover; background-position: center; position: relative;">
+    <div class="container d-flex justify-content-center align-items-center" style="min-height: 300px;">
+        <div class="text-box bg-white p-5 animated-box"
+             style="border-radius: 0px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); max-width: 800px;">
+            <h2 class="text-center" style="font-size: 28px; font-weight: bold; padding-bottom: 10px;">La nostra linea di
+                produzione</h2>
+
+            <p class="text-center text-with-line" style="font-size: 18px; color: #555; padding-top: 1rem; padding-bottom: 0px;">
+                Ascensori Idraulici ed Elettrici a fune tradizionali (con locale macchine)</p>
+            <p class="text-center text-with-line"
+               style="font-size: 18px; color: #555; padding-top: 1rem; padding-bottom: 0px;">Ascensori MRL (senza locale
+                macchine)</p>
+            <p class="text-center text-with-line"
+               style="font-size: 18px; color: #555; padding-top: 1rem; padding-bottom: 0px;">Ascensori Panoramici</p>
+            <p class="text-center text-with-line"
+               style="font-size: 18px; color: #555; padding-top: 1rem; padding-bottom: 0px;">Ascensori con fossa e
+                testata ridotta</p>
+            <p class="text-center text-with-line"
+               style="font-size: 18px; color: #555; padding-top: 1rem; padding-bottom: 0px;">Piccoli e grandi
+                montacarichi</p>
+            <p class="text-center text-with-line"
+               style="font-size: 18px; color: #555; padding-top: 1rem; padding-bottom: 0px;">Piattaforme elevatrici</p>
+            <p class="text-center text-with-line"
+               style="font-size: 18px; color: #555; padding-top: 1rem; padding-bottom: 0px;">Impianti speciali (su
+                richiesta del cliente)</p>
+            <p class="text-center text-with-line"
+               style="font-size: 18px; color: #555; padding-top: 1rem; padding-bottom: 0px;">Incastellature portanti</p>
+        </div>
+
+    </div>
+</section>
+
+<section class="certifications-section py-5">
+    <div class="container">
+        <h2 class="text-center" style="font-size: 28px; font-weight: bold; padding-bottom: 1rem;">Certificazioni</h2>
+        <p class="text-center text-with-line"
+           style="font-size: 18px; color: #555; padding-left: 10px; padding-right: 10px;  padding-bottom: 1.5rem; width: 100%; max-width: 600px; margin: 0 auto;">
+            I nostri impianti vengono prodotti e certificati nel rispetto delle normative vigenti e conformi rispetto ai
+            campi delle linee di produzione,
+            per ascensori e piattaforme elevatrici in genere:
+        </p>
+        <div class="tabs">
+            <button class="tab-button active" data-tab="1">EN 81.20/50</button>
+            <button class="tab-button" data-tab="2">EN 81-21</button>
+            <button class="tab-button" data-tab="3">EN 81-41</button>
+            <button class="tab-button" data-tab="4">EN 81-70</button>
+        </div>
+        <div class="tab-content active" id="tab-1">
+            <p class="certification-item" data-info="ISO 9001: Sistemi di gestione della qualità">2014/33/UE e EN
+                81.20/50 | Ascensori standard per nuove realizzazioni</p>
+        </div>
+        <div class="tab-content" id="tab-2">
+            <p class="certification-item" data-info="ISO 9002: Certificazione di qualità">EN 81-21 | Ascensori con fossa
+                e testata ridotta</p>
+        </div>
+        <div class="tab-content" id="tab-3">
+            <p class="certification-item" data-info="ISO 14001: Sistemi di gestione ambientale">2006/42/CE e EN 81-41 |
+                Piattaforme elevatrici in genere per direttiva macchine</p>
+        </div>
+        <div class="tab-content" id="tab-4">
+            <p class="certification-item" data-info="OHSAS 18001: Sicurezza e salute sul lavoro">EN 81-70 e
+                UNI10441-1/2:2008 | Rifacimenti ad impianti elettrici ed idraulici</p>
+        </div>
+    </div>
+</section>
+
+<section class="image-section"
+         style="position: relative; height: 800px; background-image: url('{% static 'images/nuova-curti-ascensori.jpg' %}'); background-size: cover; background-position: center;">
+    <!-- Форма обратной связи -->
+    <div class=" " style="padding: 0 20px;">
+        <div class="contact-section container"
+             style="border: 3px solid #0a97d9; border-radius: 0px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: rgba(255, 255, 255, 1); padding: 20px; width: 100%; max-width: 500px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+            <h2 class="text-center mb-4" style="color: #000000;">Contattaci</h2>
+            <form method="post" action="{% url 'contact' %}" style="margin: 0 10px;">
+                <!-- Добавляем отступы слева и справа 10px -->
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="name" class="form-label" style="color: #000000;">Il tuo nome</label>
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Inserisci il tuo nome"
+                           required style="border: 2px solid #0a97d9; border-radius: 0px;">
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label" style="color: #000000;">La tua email</label>
+                    <input type="email" class="form-control" id="email" name="email"
+                           placeholder="Inserisci la tua email"
+                           required style="border: 2px solid #0a97d9; border-radius: 0px;">
+                </div>
+                <div class="mb-3">
+                    <label for="message" class="form-label" style="color: #000000;">Il tuo messaggio</label>
+                    <textarea class="form-control" id="message" name="message" rows="5"
+                              placeholder="Scrivi il tuo messaggio qui" required
+                              style="border: 2px solid #0a97d9; border-radius: 0px;"></textarea>
+                </div>
+                <div class="d-flex justify-content-center">
+                    <button type="submit" class="btn btn-primary"
+                            style="background-color: #0a97d9; border-color: #0a97d9; border-radius: 0px; width: 150px;">
+                        Invia
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const contactSection = document.querySelector('.contact-section');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    contactSection.classList.add('visible');
+                    observer.disconnect(); // Отключаем наблюдатель после появления формы
+                }
+            });
+        }, { threshold: 0.5 }); // 50% видимости элемента
+
+        observer.observe(contactSection);
+    });
+</script>
+
+
+<script>
+    // Tabs functionality
+    const tabButtons = document.querySelectorAll('.tab-button');
+    const tabContents = document.querySelectorAll('.tab-content');
+
+    tabButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            document.querySelector('.tab-button.active').classList.remove('active');
+            button.classList.add('active');
+
+            const tab = button.getAttribute('data-tab');
+            document.querySelector('.tab-content.active').classList.remove('active');
+            document.getElementById('tab-' + tab).classList.add('active');
+        });
+    });
+
+</script>
+<script>
+    // Функция для проверки, видна ли секция
+    function isElementInViewport(el) {
+        const rect = el.getBoundingClientRect();
+        return (
+            rect.top >= 0 &&
+            rect.left >= 0 &&
+            rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+            rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+        );
+    }
+
+    // Функция для запуска анимации, когда карточки становятся видимыми
+    function animateCards() {
+        const cards = document.querySelectorAll('.project-card');
+        cards.forEach(card => {
+            if (isElementInViewport(card)) {
+                card.classList.add('visible'); // Добавляем класс для активации анимации
+            }
+        });
+    }
+
+    // Слушаем событие прокрутки
+    window.addEventListener('scroll', animateCards);
+
+    // Запускаем проверку при загрузке страницы
+    window.addEventListener('load', animateCards);
+</script>
+
+<script>
+    // Создаем IntersectionObserver
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+            // Получаем индекс текущей карточки
+            const index = Array.from(entry.target.parentNode.children).indexOf(entry.target);
+            // Добавляем задержку для каждой карточки в зависимости от ее индекса
+            setTimeout(() => {
+                entry.target.classList.add('visible'); // Добавляем класс для анимации
+            }, index * 300); // 300 мс задержка для каждой карточки
+        }
+    });
+});
+
+// Находим все карточки
+const cards = document.querySelectorAll('.project-card');
+
+// Передаем карточки в Observer
+cards.forEach((card) => {
+    observer.observe(card);
+});
+
+</script>
+
+<script>
+    // Функция для проверки, виден ли элемент на экране
+function isElementInViewport(el) {
+    const rect = el.getBoundingClientRect();
+    return (
+        rect.top >= 0 &&
+        rect.left >= 0 &&
+        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+        rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+    );
+}
+
+// Функция для добавления класса видимости
+function animateBox() {
+    const box = document.querySelector('.animated-box');
+    if (isElementInViewport(box)) {
+        box.classList.add('visible'); // Добавляем класс, когда блок в зоне видимости
+    }
+}
+
+// Добавляем прослушивание событий прокрутки и загрузки страницы
+window.addEventListener('scroll', animateBox);
+window.addEventListener('load', animateBox);
+
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const animatedBox = document.querySelector('.animated-box');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animatedBox.classList.add('visible');
+                    observer.disconnect(); // Отключаем наблюдатель после появления формы
+                }
+            });
+        }, {
+            threshold: [0.1, 0.5, 0.75], // Пороги пересечения, для мобильных устройств это будет полезно
+            rootMargin: "0px 0px -50px 0px" // Учитываем дополнительные смещения
+        });
+
+        observer.observe(animatedBox);
+    });
+</script>
+<script>
+    setTimeout(function() {
+        var alert = document.querySelector('.alert');
+        if (alert) {
+            alert.classList.add('fade-out');
+            setTimeout(function() {
+                alert.style.display = 'none';
+            }, 1000); // Полное скрытие через 2 секунды после начала анимации
+        }
+    }, 3000);
+</script>
+
+
+{% endblock %}
+

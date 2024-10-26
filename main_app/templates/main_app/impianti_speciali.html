@@ -1,0 +1,192 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Chi siamo
+{% endblock %}
+
+
+{% block content %}
+<style>
+    p {
+        hyphens: auto;
+        -webkit-hyphens: auto; /* Для поддержки в старых версиях Safari */
+        -moz-hyphens: auto;    /* Для старых версий Firefox */
+        overflow-wrap: break-word;
+    }
+    .custom-section {
+        padding: 30px 0;
+        background-color: #ffffff;
+    }
+
+    .custom-section h2 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        text-align: center;
+    }
+
+    .custom-section p {
+        font-size: 1.2rem;
+        color: #555;
+        text-align: justify;
+    }
+
+  .custom-section h2::after {
+            content: '';
+            display: block;
+            text-align: left;
+            width: 60px;
+            height: 3px;
+            background-color: #0a97d9;
+            margin: 20px auto 20px; /* Отступы для полоски */
+        }
+
+
+    .custom-photo-section {
+        width: 100%;
+        max-width: 1300px;
+        padding: 30px 0;
+        border-top: 0.5px solid #0a97d9;
+        border-bottom: 0.5px solid #0a97d9;
+        background-color: #ffffff;
+        margin: 0 auto;
+    }
+
+    .custom-photo-section-2 {
+        width: 100%;
+        max-width: 1300px;
+        padding: 20px 0;
+        background-color: #ffffff;
+        margin: 0 auto;
+    }
+
+    .custom-photo-section-2 p {
+      margin-bottom: 2rem;
+    }
+
+    .img-fluid {
+        max-width: 100%;
+        height: auto;
+        display: block;
+    }
+
+    @media (max-width: 768px) {
+        .row {
+            flex-direction: column;
+        }
+
+        .col-md-5 {
+            margin-bottom: 20px;
+        }
+    }
+
+    .image-container {
+        height: 250px; /* Задайте фиксированную высоту */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .image-container img {
+        max-height: 100%;
+        max-width: 100%;
+        object-fit: contain; /* Сохранение пропорций изображения */
+    }
+
+    .photo-caption {
+        margin-top: 10px;
+        font-size: 20px;
+        color: #555;
+    }
+</style>
+
+<section class="custom-section">
+    <div class="container">
+        <h2>Impianti Speciali</h2>
+        <p>
+            NUOVA CURTI Srl, progetta e realizza impianti speciali, secondo specifiche richieste tecniche specifiche,
+            attraverso una ramificata scelta di componenti e finiture, atti a soddisfare quelle particolari peculiarità
+            e collocazioni in strutture di pregio uniche a livello architettonico corsa (edifici o grattacieli a più
+            piani).
+            <br>Rientrano nella nostra gamma di impianti speciali:
+        </p>
+        <p>Montacarichi per grosse portate;<br>
+            Ascensori Panoramici;<br>
+            Monta auto;<br>
+            Monta lettighe;<br>
+            Montavivande (impianti per piccole portate);<br>
+            Piattaforme industriali (con pistoni a colonna, o a pantografo).</p>
+        <p>Vengono inoltre progettati e realizzati, su specifica richiesta ed analisi tecnica preventiva, impianti
+            collocati all’interno di vani di forma irregolare, per esempio:</p>
+        <p>Vani circolari;<br>
+            Vani Triangolari;<br>
+            Vani Trapezoidali;<br>
+            Vani con forme poligonali in genere.</p>
+    </div>
+</section>
+
+<section class="custom-photo-section">
+    <div class="container">
+        <div class="row justify-content-between align-items-center">
+            <div class="col-md-5 text-center">
+                <img src="{% static 'images/ascensore_circolare.jpg' %}" alt="Фото слева" class="img-fluid">
+                <p class="photo-caption" style="font-size: 20px;">Ascensore Circolare</p>
+            </div>
+            <div class="col-md-5 text-center">
+                <img src="{% static 'images/ascensore_diroma_irregolare.jpg' %}" alt="Фото справа" class="img-fluid">
+                <p class="photo-caption" style="font-size: 20px;">Ascensore Di Forma Irregolare</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="custom-section">
+    <div class="container">
+        <h2>Alcuni esempi di impianti speciali</h2>
+        <p style="text-align: center;">
+           Vengono di seguito riportati alcuni esempi tecnici di nostre realizzazioni per alcune delle più prestigiose referenze Italiane ed internazionali:
+        </p>
+    </div>
+</section>
+
+<section class="custom-photo-section-2">
+    <div class="container">
+        <div class="row justify-content-center align-items-center">
+            <div class="col-md-3 text-center d-flex flex-column align-items-center">
+                <div class="image-container">
+                    <a href="{% static 'images/bulgari-curti.png' %}" data-lightbox="gallery" data-title="Bulgari – Mosca">
+                        <img src="{% static 'images/bulgari-curti.png' %}" alt="Фото слева" class="img-fluid"  width="280">
+                    </a>
+                </div>
+                <p class="photo-caption" style="font-size: 16px;">Bulgari – Mosca</p>
+            </div>
+            <div class="col-md-3 text-center d-flex flex-column align-items-center">
+                <div class="image-container">
+                    <a href="{% static 'images/roberto-cavalli-milano-curti.png' %}" data-lightbox="gallery" data-title="Roberto Cavalli – Milano">
+                        <img src="{% static 'images/roberto-cavalli-milano-curti.png' %}" alt="Фото справа" class="img-fluid" width="250">
+                    </a>
+                </div>
+                <p class="photo-caption" style="font-size: 16px;">Roberto Cavalli – Milano</p>
+            </div>
+            <div class="col-md-3 text-center d-flex flex-column align-items-center">
+                <div class="image-container">
+                    <a href="{% static 'images/Russian-Navy-Minister-Tuapse-Mosca-curti.png' %}" data-lightbox="gallery" data-title="Russian Navy Minister Tuapse – Mosca">
+                        <img src="{% static 'images/Russian-Navy-Minister-Tuapse-Mosca-curti.png' %}" alt="Фото справа" class="img-fluid" width=250">
+                    </a>
+                </div>
+                <p class="photo-caption" style="font-size: 16px;">Russian Navy Minister Tuapse – Mosca</p>
+            </div>
+            <div class="col-md-3 text-center d-flex flex-column align-items-center">
+                <div class="image-container">
+                    <a href="{% static 'images/G8-Summit-–-Isola-della-Maddalena-curti.png' %}" data-lightbox="gallery" data-title="G8 Summit – Isola della Maddalena">
+                        <img src="{% static 'images/G8-Summit-–-Isola-della-Maddalena-curti.png' %}" alt="Фото справа" class="img-fluid" width="280">
+                    </a>
+                </div>
+                <p class="photo-caption" style="font-size: 16px;">G8 Summit – Isola della Maddalena</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox-plus-jquery.min.js"></script>
+{% endblock %}

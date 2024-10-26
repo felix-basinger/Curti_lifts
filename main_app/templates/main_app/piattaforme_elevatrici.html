@@ -1,0 +1,483 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Chi siamo
+{% endblock %}
+
+{% block content %}
+<style>
+    p {
+        hyphens: auto;
+        -webkit-hyphens: auto; /* Для поддержки в старых версиях Safari */
+        -moz-hyphens: auto;    /* Для старых версий Firefox */
+        overflow-wrap: break-word;
+    }
+    .custom-section {
+        padding: 30px 0;
+        background-color: #ffffff;
+    }
+
+    .table-photo-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+    }
+
+    .feature-box {
+        background-color: rgba(10, 151, 217, 0.1);
+        padding: 20px;
+    }
+
+    .feature-box h3 {
+        font-size: 1.8rem;
+        margin-bottom: 15px;
+        color: #0a97d9;
+    }
+
+    .img-fluid {
+        max-width: 100%;
+        height: auto;
+    }
+
+    @media (max-width: 768px) {
+        .row {
+            flex-direction: column;
+        }
+
+        .table-photo-row {
+            flex-direction: column;
+        }
+
+        .table-photo-row .col-md-6 {
+            margin-bottom: 20px;
+        }
+    }
+    .custom-section {
+        padding: 30px 0;
+        background-color: #ffffff;
+    }
+
+    .custom-section h2 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .custom-section p {
+        font-size: 1.2rem;
+        margin-bottom: 30px;
+        color: #555;
+        text-align: justify;
+    }
+    .custom-section h2::after {
+        content: '';
+        display: block;
+        text-align: left;
+        width: 60px;
+        height: 3px;
+        background-color: #0a97d9;
+        margin: 20px auto 20px;
+    }
+
+    .custom-section h3::after {
+        content: '';
+        display: block;
+        text-align: left;
+        width: 60px;
+        height: 3px;
+        background-color: #0a97d9;
+        margin: 20px 0 20px 0;
+    }
+
+    .feature-box {
+        background-color: rgba(10, 151, 217, 0.1);
+        padding: 20px;
+
+    }
+
+    .feature-box h3 {
+        font-size: 1.8rem;
+        margin-bottom: 15px;
+        color: #0a97d9;
+    }
+
+    .custom-table-section {
+        padding: 30px 0;
+        background-color: #ffffff;
+    }
+
+    .custom-table-section h2 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 30px;
+    }
+
+    .table th, .table td {
+        text-align: center;
+        vertical-align: middle;
+    }
+
+    .thead-dark th {
+        background-color: #0a97d9;
+        color: #ffffff;
+    }
+
+    .table-striped>tbody>tr:nth-of-type(odd)>* {
+    --bs-table-accent-bg: rgba(10,151,217, 0.2);
+
+}
+
+    @media (max-width: 768px) {
+        .row {
+            flex-direction: column;
+        }
+
+        .col-md-4 {
+            margin-bottom: 20px;
+        }
+    }
+
+    .feature-box {
+        background-color: rgba(10,151,217, 0.2);
+        padding: 30px;
+    }
+
+    .feature-box h3 {
+        font-size: 2rem;
+        margin-bottom: 20px;
+        color: #0a97d9;
+    }
+
+    .feature-box ul {
+        font-size: 1.2rem;
+        color: #555;
+        padding-left: 1.2rem;
+    }
+
+    .feature-box ul li {
+        margin-bottom: 24px;
+    }
+
+    .feature-box h3::after {
+            content: '';
+            display: block;
+            text-align: left;
+            width: 60px;
+            height: 3px;
+            background-color: #0a97d9;
+            margin: 20px 0 20px 0; /* Отступы для полоски */
+        }
+
+</style>
+
+<section class="custom-section">
+    <div class="container">
+        <h2>Piattaforme Elevatrici</h2>
+        <p>
+            Il nostro impianto Home-Lift, certificato rispetto alla direttiva macchine 2006/42/CE, è idoneo per
+            soddisfare la più ampia gamma di richieste, per chi desidera l’installazione di un elevatore di piccole
+            dimensioni, particolarmente adatto in ambienti residenziali o uffici commerciali.
+            <br>Flessibilità e compattezza, consentono la collocazione in spazi talvolta ridottissimi, adattandosi ad
+            ogni contesto e ambiente.
+            <br>E’ disponibile nelle più ampie e diverse versioni applicative, come segue:
+        </p>
+        <p>
+            Impianto Manuale (con sole porte manuali ai piani);<br>
+            Impianto Semiautomatico (porta di cabina a soffietto e porte manuali ai piani);<br>
+            Impianto Automatico (porte di cabina e di piano automatiche).
+        </p>
+        <p style="padding-bottom: 60px;">
+            Vengono valutate in base alle specifiche richieste tecniche di vano disponibili, le soluzioni più idonee per il dimensionamento massimo di cabina.
+        </p>
+        <div class="row">
+            <!-- Левый блок с таблицами и фото -->
+            <div class="col-lg-8 col-md-12">
+                <div class="table-photo-row row align-items-center mb-3" style="border-bottom: 1px solid rgba(10, 151, 217, 0.2); padding-bottom: 20px;">
+                    <div class="col-md-6">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered custom-table">
+                                <thead class="thead-dark">
+                                <tr>
+                                    <th>LC</th>
+                                    <th>PC</th>
+                                    <th>I</th>
+                                    <th>LV</th>
+                                    <th>PV</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>700</td>
+                                    <td>1000</td>
+                                    <td>700</td>
+                                    <td>1150</td>
+                                    <td>1100</td>
+                                </tr>
+                                <tr>
+                                    <td>800</td>
+                                    <td>1200</td>
+                                    <td>800</td>
+                                    <td>1250</td>
+                                    <td>1300</td>
+                                </tr>
+                                <tr>
+                                    <td>950</td>
+                                    <td>1300</td>
+                                    <td>800</td>
+                                    <td>1400</td>
+                                    <td>1450</td>
+                                </tr>
+                                <tr>
+                                    <td>1100</td>
+                                    <td>1400</td>
+                                    <td>900</td>
+                                    <td>1550</td>
+                                    <td>1550</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-md-6 text-center">
+                        <img src="{% static 'images/pagina8BN-768x808.jpg' %}" alt="Image 1" class="img-fluid"
+                             width="300">
+                    </div>
+                </div>
+
+                <div class="table-photo-row row align-items-center mb-3" style="border-bottom: 1px solid rgba(10, 151, 217, 0.2); padding-bottom: 20px;">
+                    <div class="col-md-6">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered custom-table">
+                                <thead class="thead-dark">
+                                <tr>
+                                    <th>LC</th>
+                                    <th>PC</th>
+                                    <th>I</th>
+                                    <th>LV</th>
+                                    <th>PV</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>700</td>
+                                    <td>1000</td>
+                                    <td>650</td>
+                                    <td>1150</td>
+                                    <td>1250</td>
+                                </tr>
+                                <tr>
+                                    <td>800</td>
+                                    <td>1200</td>
+                                    <td>750</td>
+                                    <td>1250</td>
+                                    <td>1450</td>
+                                </tr>
+                                <tr>
+                                    <td>850</td>
+                                    <td>1200</td>
+                                    <td>800</td>
+                                    <td>1300</td>
+                                    <td>1450</td>
+                                </tr>
+                                <tr>
+                                    <td>950</td>
+                                    <td>1300</td>
+                                    <td>900</td>
+                                    <td>1400</td>
+                                    <td>1550</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-md-6 text-center">
+                        <img src="{% static 'images/pagina9BN-768x813.jpg' %}" alt="Image 2" class="img-fluid"
+                             width="300">
+                    </div>
+                </div>
+
+                <div class="table-photo-row row align-items-center mb-5">
+                    <div class="col-md-6">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered custom-table">
+                                <thead class="thead-dark">
+                                <tr>
+                                    <th>LC</th>
+                                    <th>PC</th>
+                                    <th>I</th>
+                                    <th>LV</th>
+                                    <th>PV</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>750</td>
+                                    <td>1000</td>
+                                    <td>650</td>
+                                    <td>1150</td>
+                                    <td>1300</td>
+                                </tr>
+                                <tr>
+                                    <td>850</td>
+                                    <td>1200</td>
+                                    <td>750</td>
+                                    <td>1300</td>
+                                    <td>1500</td>
+                                </tr>
+                                <tr>
+                                    <td>950</td>
+                                    <td>1300</td>
+                                    <td>800</td>
+                                    <td>1400</td>
+                                    <td>1600</td>
+                                </tr>
+                                <tr>
+                                    <td>1100</td>
+                                    <td>1400</td>
+                                    <td>900</td>
+                                    <td>1550</td>
+                                    <td>1700</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-md-6 text-center">
+                        <img src="{% static 'images/pagina10BN-768x778.jpg' %}" alt="Image 3" class="img-fluid"
+                             width="300">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Правый блок с характеристиками -->
+            <div class="col-lg-4 col-md-12">
+                <div class="feature-box">
+                    <h3>Caratteristiche</h3>
+                    <p>Alcune caratteristiche principali del nostro impianto tipo:</p>
+                    <ul>
+                        <li>PORTATA:  da 250.kg a 500.kg</li>
+                        <li>VELOCITA’:  0,15 m/s</li>
+                        <li>CORSA:  Max 15.000 mm</li>
+                        <li>ACCESSI: Fino a 3</li>
+                        <li>MANOVRA:  A «Uomo presente» o Universale Standard</li>
+                        <li>QUADRO DI MANOVRA: A microprocessori</li>
+                        <li>LOCALE MACCHINE:  In armadio vicino al vano</li>
+                        <li>PORTA/E DI CABINA:  A soffietto o Automatiche.</li>
+                        <li>PORE DI PIANO:  Manuali o Automatiche.</li>
+                        <li>TESTATA MINIMA:  2600 mm</li>
+                        <li>FOSSA MINIMA:  1100 mm</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="custom-section" style="background-color: rgba(10, 151, 217, 0.1);">
+    <div class="container">
+        <div class="row">
+            <!-- Левый блок с текстом и фотографиями -->
+            <div class="col-lg-8 col-md-12">
+                <div class="text-photo-block">
+                    <!-- Текстовый блок -->
+                    <div class="text-content">
+                        <h3>Piattaforme Elevatrici per disabili</h3>
+                        <p>
+                            L’impianto di sollevamento per disabili permette il superamento di dislivelli fino a 3 metri di altezza in modo sicuro, confortevole e silenzioso sia in spazi interni che esterni. La sua installazione non richiede opere murarie in quanto non necessita di fossa né di locale macchina. Può essere quindi installato direttamente sul pavimento.
+                            <br>Rappresenta la soluzione ideale per persone con difficoltà motorie e per chiunque necessiti il facile superamento dei dislivelli sia in ambiente domestico che pubblico.
+                        </p>
+                    </div>
+                    <!-- Фотографии с подписями -->
+                    <div class="row justify-content-center align-items-center" style="margin-top: 100px; margin-bottom: 60px;">
+                        <div class="col-md-6 text-center">
+                            <img src="{% static 'images/piattaforme-per-disabili-copia-1-200x300.png' %}" alt="Фото 1" class="img-fluid">
+                            <p class="photo-caption" style="text-align: center;">Versione con due accessi opposti (180°)</p>
+                        </div>
+                        <div class="col-md-6 text-center">
+                            <img src="{% static 'images/piattaforme-per-disabili-02-copia-1-300x300.png' %}" alt="Фото 2" class="img-fluid">
+                            <p class="photo-caption" style="text-align: center;">Versione con due accessi adiacenti (90°)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Правый блок с характеристиками -->
+            <div class="col-lg-4 col-md-12">
+                <div class="feature-box" style="background-color: #ffffff;">
+                    <h3>Caratteristiche</h3>
+                    <p>Alcune caratteristiche principali dei nostri impianti standard:</p>
+                    <ul>
+                        <li>PORTATA:  fino a 340 kg</li>
+                        <li>VELOCITA’:  0,05 m/s</li>
+                        <li>CORSA:  Max 3.000 mm</li>
+                        <li>ACCESSI:  Fino a 2</li>
+                        <li>MANOVRA:  «Uomo presente»</li>
+                        <li>LOCALE MACCHINA:  Laterale, all’interno della macchina.</li>
+                        <li>PORTE DI PIANO:  Porte manuali e cancelli.</li>
+                        <li>TESTATA MINIMA:  Libera</li>
+                        <li>FOSSA MINIMA:  Non necessita di fossa</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="custom-section" style="padding-top: 50px;">
+    <div class="container">
+        <div class="row">
+            <!-- Левый блок с текстом и фотографиями -->
+            <div class="col-lg-8 col-md-12">
+                <div class="text-photo-block">
+                    <!-- Текстовый блок -->
+                    <div class="text-content">
+                        <h3>Piattaforme per trasporto merci</h3>
+                        <p>
+                           La piattaforma elevatrice per il trasporto merci è ideata per il trasferimento verticale di merci, a diversi piani, interrati o in elevazione fino a 12 metri di corsa.
+                            <br>E’ progettata con portate standard da 300 a 600 Kg e vengono installati ovunque sia necessario stoccare a piani diversi quali soppalchi, cantine, officine, ect … contenitori, bancali, casse, scatole, merci pesanti, e altro ancora.
+                            <br>Molto utile ad uso domestico per raggiungere un sotto tetto o una cantina.
+                        </p>
+                        <p>
+                            Su richiesta specifica, e previa analisi tecnica preventiva, è possibile progettare questa tipologia di montacarichi per portate superiori e con l’aggiunta del sistema PSB, che consente di movimentare la stessa con operatore autorizzato a bordo.
+                        </p>
+                    </div>
+                    <!-- Фотографии с подписями -->
+                    <div class="row justify-content-center align-items-center" style="margin-top: 100px; margin-bottom: 60px;">
+                        <div class="col-md-6 text-center">
+                            <img src="{% static 'images/pulsantiera-a-bordo-pedana-curti.png' %}" alt="Фото 1" class="img-fluid" width="350">
+                            <p class="photo-caption" style="text-align: center; padding-top: 30px;">Pulsantiera a bordo pedana</p>
+                        </div>
+                        <div class="col-md-6 text-center">
+                            <img src="{% static 'images/piattaforma-per-trasporto-merci-curti.png' %}" alt="Фото 2" class="img-fluid" width="250">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Правый блок с характеристиками -->
+            <div class="col-lg-4 col-md-12">
+                <div class="feature-box">
+                    <h3>Caratteristiche</h3>
+                    <p>Alcune caratteristiche principali dei nostri impianti standard:</p>
+                    <ul>
+                        <li>PORTATA:  da 300 kg a 600 kg</li>
+                        <li>VELOCITA’:  0,10 m/s</li>
+                        <li>CORSA:  Max 12.000 mm</li>
+                        <li>ACCESSI:  Fino a 3</li>
+                        <li>MANOVRA:  Chiamata/Rimando ai piani</li>
+                        <li>QUADRO DI MANOVRA:  A microprocessori</li>
+                        <li>LOCALE MACCHINA:  Vicino al vano</li>
+                        <li>PORTA/E DI CABINA:  Non previste</li>
+                        <li>TESTATA MINIMA:  2350 mm</li>
+                        <li>FOSSA MINIMA:  150 mm</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,249 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Chi siamo
+{% endblock %}
+
+
+{% block content %}
+<style>
+    p {
+        hyphens: auto;
+        -webkit-hyphens: auto; /* Для поддержки в старых версиях Safari */
+        -moz-hyphens: auto;    /* Для старых версий Firefox */
+        overflow-wrap: break-word;
+    }
+    .custom-table-section {
+        padding: 30px 0;
+    }
+
+    .table-responsive {
+        margin-top: 20px;
+    }
+
+    .table th, .table td {
+        text-align: center;
+        vertical-align: middle;
+    }
+
+    .table th {
+        background-color: #0a97d9;
+        color: #ffffff;
+    }
+
+
+    .table-striped > tbody > tr:nth-of-type(odd) {
+        background-color: rgba(10, 151, 217, 0.1); /* Светлый голубой для чередующихся строк */
+    }
+
+     .custom-table-section h2 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .custom-table-section p {
+        font-size: 1.2rem;
+        margin-bottom: 30px;
+        color: #555;
+        text-align: justify;
+    }
+
+    .custom-table-section h2::after {
+        content: '';
+        display: block;
+        text-align: left;
+        width: 60px;
+        height: 3px;
+        background-color: #0a97d9;
+        margin: 20px auto 20px;
+    }
+
+    .custom-table-section h3::after {
+        content: '';
+        display: block;
+        text-align: left;
+        width: 60px;
+        height: 3px;
+        background-color: #0a97d9;
+        margin: 20px 0 20px 0;
+    }
+</style>
+
+<section class="custom-table-section">
+    <div class="container">
+         <h2>Scale Mobili</h2>
+        <h3>Inclinazione 30 - 35°</h3>
+        <p>
+            In edifici quali centri commerciali, impianti sportivi e particolari edifici pubblici, la soluzione pratica per creare il collegamento tra un piano e l’altro è costituita dalla scala mobile.
+            <br>Le nostre scale mobili sono prodotte nella versione ad inclinazione standard di 30° o 35°, ma è possibile studiare, attraverso una valutazione tecnica preventiva, la possibilità di costruire impianti speciali specifici per ogni esigenza del cliente.
+        </p>
+        <div class="col-md-12 text-center d-flex flex-column align-items-center">
+                <img src="{% static 'images/scala-mobile-30-35.jpg' %}" alt="Ascensore Oleodinamico" class="img-fluid" style="padding-bottom: 50px;">
+            </div>
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>Modello</th>
+                    <th>Corsa (mm)</th>
+                    <th>Velocità (m/s)</th>
+                    <th>Capacità (per/h)</th>
+                    <th>Inclinazione (Gradi)</th>
+                    <th>Step (n°)</th>
+                    <th>Potenza (Kw)</th>
+                    <th>A (mm)</th>
+                    <th>B (mm)</th>
+                    <th>C (mm)</th>
+                    <th>D (mm)</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td rowspan="2">SD 600/30°</td>
+                    <td>3000 ≤ H ≤ 6000</td>
+                    <td rowspan="2">0.5</td>
+                    <td rowspan="2">4500</td>
+                    <td rowspan="2">30°</td>
+                    <td>2 (3)</td>
+                    <td rowspan="2">8</td>
+                    <td rowspan="2">600</td>
+                    <td rowspan="2">838</td>
+                    <td rowspan="2">1200</td>
+                    <td rowspan="2">≥ 1260</td>
+                </tr>
+                <tr>
+                    <td>6000 < H ≤ 7200</td>
+                    <td>3</td>
+                </tr>
+                <tr>
+                    <td rowspan="4">SD 800/30°</td>
+                    <td>3000 ≤ H ≤ 4800</td>
+                    <td rowspan="4">0.5</td>
+                    <td rowspan="4">6750</td>
+                    <td rowspan="4">30°</td>
+                    <td>2 (3)</td>
+                    <td>8</td>
+                    <td rowspan="4">800</td>
+                    <td rowspan="4">1038</td>
+                    <td rowspan="4">400</td>
+                    <td rowspan="4">≥ 1460</td>
+                </tr>
+                <tr>
+                    <td>4800 < H ≤ 6000</td>
+                    <td>2 (3)</td>
+                    <td>11</td>
+
+                </tr>
+                <tr>
+                    <td>6000 < H ≤ 6400</td>
+                    <td>3</td>
+                    <td>11</td>
+
+                </tr>
+                <tr>
+                    <td>6400 < H ≤ 7200</td>
+                    <td>3</td>
+                    <td>15</td>
+
+                </tr>
+                <tr>
+                    <td rowspan="6">SD 1000/30°</td>
+                    <td>3000 ≤ H ≤ 12000</td>
+                    <td rowspan="6">0.5</td>
+                    <td rowspan="6">9000</td>
+                    <td rowspan="6">30°</td>
+                    <td>2 (3)</td>
+                    <td>8</td>
+                    <td rowspan="6">1000</td>
+                    <td rowspan="6">1238</td>
+                    <td rowspan="6">1600</td>
+                    <td rowspan="6">≥ 1660</td>
+                </tr>
+                <tr>
+                    <td>4800 < H ≤ 6000</td>
+                    <td>2 (3)</td>
+                    <td>11</td>
+
+                </tr>
+                <tr>
+                    <td>6000 < H ≤ 6400</td>
+                    <td>3</td>
+                    <td>11</td>
+
+                </tr>
+                <tr>
+                    <td>6400 < H ≤ 7200</td>
+                    <td>3</td>
+                    <td>15</td>
+
+                </tr>
+                <tr>
+                    <td>7200 < H ≤ 8000</td>
+                    <td>3</td>
+                    <td>15</td>
+
+                </tr>
+                <tr>
+                    <td>8000 < H ≤ 12000</td>
+                    <td>3</td>
+                    <td>2 x 11</td>
+
+                </tr>
+                <tr>
+                    <td>SD 600/35°</td>
+                    <td>3000 ≤ H ≤ 6000</td>
+                    <td  >0.5</td>
+                    <td  >4500</td>
+                    <td  >35°</td>
+                    <td>2</td>
+                    <td >8</td>
+                    <td >600</td>
+                    <td >838</td>
+                    <td  >1200</td>
+                    <td  >≥ 1260</td>
+                </tr>
+                <tr>
+                    <td rowspan="2">SD 800/35°</td>
+                    <td>3000 ≤ H ≤ 5200</td>
+                    <td rowspan="2">0.5</td>
+                    <td rowspan="2">6750</td>
+                    <td rowspan="2">35°</td>
+                    <td rowspan="2">2</td>
+                    <td>8</td>
+                    <td rowspan="2">800</td>
+                    <td rowspan="2">1038</td>
+                    <td rowspan="2">1400</td>
+                    <td rowspan="2">≥ 1460</td>
+                </tr>
+                <tr>
+                    <td>5200 < H ≤ 6000</td>
+                    <td>11</td>
+                </tr>
+                <tr>
+                    <td rowspan="2">SD 1000/35°</td>
+                    <td>3000 ≤ H ≤ 5200</td>
+                    <td rowspan="2">0.5</td>
+                    <td rowspan="2">9000</td>
+                    <td rowspan="2">35°</td>
+                    <td rowspan="2">2</td>
+                    <td>8</td>
+                    <td rowspan="2">1000</td>
+                    <td rowspan="2">1238</td>
+                    <td rowspan="2">1600</td>
+                    <td rowspan="2">≥ 1660</td>
+                </tr>
+                <tr>
+                    <td>5200 < H ≤ 6000</td>
+                    <td>11</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+
+{% endblock %}
